@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Brewed Bros</title>
+
+    <link rel="stylesheet" href="css/fontawesome_all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdbfull.css" rel="stylesheet">
+    <link href="/css/slick.min.css" rel="stylesheet">
+    <link href="/css/slick-theme.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header th:include="header :: header"
+        style="position: sticky; top: 0; z-index: 10;"></header>
+
+<main>
+    <section class="container-fluid mt-3">
+        <h1 class="h3">Events in Bangalore</h1>
+    </section>
+    <section class="mb-5">
+
+        <div class="main">
+
+            <div class="slider slider-nav">
+                <div>
+                    <img class="d-block w-100 featured-img-height"
+                         style="height: 25vw; width: 50vw !important;" src="./img/1.jpg"
+                         alt="First slide">
+                </div>
+                <div>
+                    <img class="d-block w-100 featured-img-height"
+                         style="height: 25vw; width: 50vw !important;" src="./img/2.jpg"
+                         alt="First slide">
+                </div>
+                <div>
+                    <img class="d-block w-100 featured-img-height"
+                         style="height: 25vw; width: 50vw !important;" src="./img/3.jpg"
+                         alt="First slide">
+                </div>
+                <div>
+                    <img class="d-block w-100 featured-img-height"
+                         style="height: 25vw; width: 50vw !important;" src="./img/1.jpg"
+                         alt="First slide">
+                </div>
+                <div>
+                    <img class="d-block w-100 featured-img-height"
+                         style="height: 25vw; width: 50vw !important;" src="./img/2.jpg"
+                         alt="First slide">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-3 mb-4 text-center">
+        <h2 class="h4">Browse by Genres</h2>
+
+        <div class="row mt-3">
+            <div class=" align-items-center  col-4 col-xs-4  col-sm-2  d-flex flex-column p-2">
+				<span> <i class="far fa-2x fa-calendar-alt"></i>
+				</span> <span> All </span>
+            </div>
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+
+				<span> <i class="fas fa-2x  fa-utensils"></i>
+				</span> <span> Eat Out </span>
+            </div>
+
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+
+				<span> <i class="fas fa-eye fa-2x "></i>
+				</span> <span> Beauty </span>
+            </div>
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+
+				<span> <i class="fas fa-binoculars fa-2x "></i>
+				</span> <span> Adventure </span>
+            </div>
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+
+				<span> <i class="far fa-2x fa-calendar-alt"></i>
+				</span> <span> Events </span>
+            </div>
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+				<span> <i class="fas fa-stethoscope fa-2x "></i>
+				</span> <span> Health </span>
+            </div>
+
+
+        </div>
+
+    </section>
+    <section class="container pb-3 text-center">
+
+        <div class="row">
+            <div class="col-12 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+                <select class="mdb-select colorful-select dropdown-primary" multiple
+                        searchable="Search here..">
+                    <option value="" disabled selected>Where</option>
+                    <option value="1">Koramangala</option>
+                    <option value="2">MG Road</option>
+                    <option value="3">Whitefield</option>
+                    <option value="4">Indiranagar</option>
+                    <option value="5">Masure Road</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
+                <select class="mdb-select">
+                    <option value="" disabled selected>When</option>
+                    <option value="1">Today</option>
+                    <option value="2">Tomarrow</option>
+                    <option value="3">This Weekend</option>
+                    <option value="3">This Week</option>
+                    <option value="3">This Month</option>
+                </select>
+
+            </div>
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
+
+                <select class="mdb-select">
+                    <option value="" disabled selected>How much</option>
+                    <option value="1">0 - 500</option>
+                    <option value="2">501 - 1000</option>
+                    <option value="3">1001 - 2000</option>
+                    <option value="3">2000 above</option>
+
+                </select>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
+                <select class="mdb-select">
+                    <option value="" disabled selected>Sort by</option>
+                    <option value="1">Popularity</option>
+                    <option value="1">Recommended</option>
+                    <option value="2">Near by me</option>
+                    <option value="3">Price high to low</option>
+                    <option value="3">Price low to high</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-3">
+        <div class="row">
+            <div th:each="banner : ${event1}" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="card card-cascade narrower mt-5">
+                    <div class="view view-cascade overlay  zoom">
+                        <img class="card-img-top"
+                             src="./img/lights-party-dancing-music.jpg" alt="Card image cap">
+                        <div
+                                class="mask flex-center rgba-black-light waves-effect waves-light  ">
+                            <h5 class="h6 blue p-1 pl-2 pr-2 white-text rounded">VIEW</h5>
+                        </div>
+                    </div>
+                    <!-- transform: rotate(90deg); -->
+                    <div class="card-body card-body-cascade pb-2">
+                        <h3 class="h6 card-title pb-1 mb-0">Heaven on Earth Spa</h3>
+                        <p class="card-text pb-1 mb-0">Indiranagar</p>
+
+                    </div>
+                    <div class="rounded-bottom border-top">
+                        <div class="row m-0 p-0">
+                            <div
+                                    class="align-items-center border-right col-md-4 d-flex green justify-content-center p-2 white-text">
+                                <div class="row">
+                                    <h6 class="m-0 dark-green-text">
+                                        <!-- <i class="fas fa-tag green-text darken-2"></i> -->
+                                        5 deals
+                                    </h6>
+                                </div>
+                            </div>
+                            <div
+                                    class="col-md-4 align-items-center border-right col-md-4 d-flex justify-content-center p-2">
+                                <div class="row">
+                                    <h6 class="m-0">45 % off</h6>
+                                </div>
+
+                            </div>
+                            <div
+                                    class="col-md-4 align-items-center border-right col-md-4 d-flex justify-content-center p-2">
+                                <div class="row">
+                                    <h6 class="m-0">
+                                        <i class="fas fa-rupee-sign pr-1 "></i> 499
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                            class="rounded-bottom border-top lighten-2 text-center text-muted p-2 pr-3 pl-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <a href="/" class="grey-text"> 21 <i
+                                        class="fas fa-eye pr-1 black-text"> </i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 3 <i
+                                        class="far fa-heart pr-1 red-text"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 2 <i
+                                        class="far fa-star pr-1 yellow-text"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 11 <i
+                                        class="fas fa-share-alt pr-1 blue-text"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    <section class="container pb-3 text-center">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 pt-4">
+                <!--Panel-->
+                <div class="row card text-center">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col md-10">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural
+                                    lead-in to additional content.</p>
+                            </div>
+                            <div class="col-md-2">
+
+                                <a href="/" class="btn btn-primary">Explore</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="footer" th:include="footer :: footer"
+        class="page-footer center-on-small-only unique-color-dark pt-0"></footer>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdbfull.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+<script>
+		$(document).ready(function() {
+			$('.mdb-select').material_select();
+			$('.slider-cat1').slick({
+				slidesToShow : 3,
+				slidesToScroll : 1,
+			});
+
+			$('.slider-nav').slick({
+				autoplay : true,
+				autoplaySpeed : 2000,
+				centerMode : true,
+				slidesToShow : 2,
+				slidesToScroll : 1,
+				dots : true,
+				focusOnSelect : true,
+				mobileFirst : true,
+				variableWidth : true
+			});
+
+			$('a[data-slide]').click(function(e) {
+				e.preventDefault();
+				var slideno = $(this).data('slide');
+				$('.slider-nav').slick('slickGoTo', slideno - 1);
+			});
+
+		});
+
+
+
+</script>
+</body>
+</html>

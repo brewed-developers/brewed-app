@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welocome to Admin</title>
+    <link rel="stylesheet" href="/css/fontawesome_all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdbfull.css" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<form action="#" th:action="@{/admin/voucher}"  th:object="${voucher}" method="post"  class="text-center border border-light p-5">
+
+    <div class="row">
+
+        <div class="mystyle col-4" >
+            <input  type="text" id="name" th:field="*{name}"  class="form-control" placeholder="Name" required>
+        </div>
+        <div class="mystyle col-4" >
+            <input  type="text" id="title" th:field="*{title}" class="form-control" placeholder="Title" required>
+        </div>
+        <div class="mystyle col-4" >
+            <input  type="text" id="text" th:field="*{longDescription}" class="form-control" placeholder="Long Description" required>
+        </div>
+        <div class="mystyle col-4">
+            <input  type="number" id="priority" th:field="*{priority}" min="1" max="9999999999" class="form-control" placeholder="Priority" required>
+        </div>
+
+        <div class="mystyle col-4">
+            <input  type="text" id="shortDescription" th:field="*{shortDescription}" class="form-control" placeholder="Short Description" required>
+        </div>
+        <div class="mystyle col-4">
+            <input  type="number" id="homepage" min="0" max="1" th:field="*{show_homepage}" value="1" class="form-control" placeholder="Show on Homepage" required>
+        </div>
+
+        <div class="mystyle col-4">
+            <input  type="text" id="voucherType" th:field="*{voucherType}" class="form-control" placeholder="Voucher Type" required>
+        </div>
+        <div hidden class="mystyle col-4" >
+            <input  type="text"  id="voucherId" th:field="*{voucherId}"  class="form-control" placeholder="voucherId" required>
+        </div>
+
+        <div class="mystyle col-12">
+            <button type="submit" class="btn btn-primary" >
+                Add Voucher
+            </button>
+        </div>
+
+
+    </div>
+
+</form>
+
+
+<div class="mystyle col-12">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+        Add Ticket
+    </button>
+</div>
+
+
+<!-- Modal to add ticket-->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fluid" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ticket Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="#" th:action="@{/admin/ticket}"  th:object="${ticket}" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div  class="mystyle col-4" >
+                            <input  type="number"  id="tktvoucherID" th:field="*{tktvoucherID}"  th:value="${param.id}"  class="form-control" placeholder="voucherId">
+                        </div>
+
+                        <div class="mystyle col-4" >
+                            <input   type="text"  id="ticketName" th:field="*{ticketName}"  class="form-control" placeholder="Ticket Name" required>
+                        </div>
+                        <div class="mystyle col-4" >
+                            <input  type="text" id="ticketType" th:field="*{ticketType}"  class="form-control" placeholder="Ticket Type" required>
+                        </div>
+                        <div class="mystyle col-4" >
+                            <input  type="number" id="originalPrice" th:field="*{originalPrice}"  class="form-control" placeholder="Original Price"  required>
+                        </div>
+                        <div class="mystyle col-4" >
+                            <input  type="number" id="discountedPrice" th:field="*{discountedPrice}"  class="form-control" placeholder="Discounted Price" required>
+                        </div>
+                        <div class="mystyle col-4" >
+                            <input  type="number" id="discountPercentage" th:field="*{discountPercentage}"  class="form-control" placeholder="Discounted Percentage" required>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button  type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!---to show list of ticket-->
+<form>
+
+    <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Tickets</h3>
+        <div class="card-body">
+            <div id="table" class="table-editable">
+
+                <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Ticket Name</th>
+                        <th scope="col">Ticket Type</th>
+                        <th scope="col">Original Price</th>
+                        <th scope="col">Discounted Price</th>
+                        <th scope="col">Discount Percentage</th>
+
+                    </tr>
+                    <tr th:each="ticket : ${ticketList}">
+                        <form action="#" th:action="@{/admin/ticket}"  th:object="${ticket}" method="post">
+                            <td class="pt-3-half"  th:text="${ticket.id}" contenteditable="true"></td>
+                            <td class="pt-3-half" th:field="*{ticketName}" th:text="${ticket.ticketName}" contenteditable="true"></td>
+                            <td class="pt-3-half" th:field="*{ticketType}" th:text="${ticket.ticketType}" contenteditable="true"></td>
+                            <td class="pt-3-half" th:field="*{originalPrice}" th:text="${ticket.originalPrice}" contenteditable="true"></td>
+                            <td class="pt-3-half" th:field="*{discountedPrice}" th:text="${ticket.discountedPrice}" contenteditable="true"></td>
+                            <td class="pt-3-half" th:field="*{discountPercentage}" th:text="${ticket.discountPercentage}" contenteditable="true"></td>
+
+
+                            <td>
+
+                                <span class="table-remove"><button type="submit" class="btn btn-danger btn-rounded btn-sm my-0">Upadte</button></span>
+
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+</body>
+<style>
+ .mystyle{ margin-top:30px }
+
+</style>
+<script>
+    	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdbfull.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+</script>
+</html>
+
+

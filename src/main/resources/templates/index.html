@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Brewed Bros</title>
+
+    <link rel="stylesheet" href="/css/fontawesome_all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdbfull.css" rel="stylesheet">
+    <link href="/css/slick.min.css" rel="stylesheet">
+    <link href="/css/slick-theme.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<header th:include="header :: header"
+        style="position: sticky; top: 0; z-index: 10;"></header>
+
+<div th:include="header :: loginpopup"></div>
+<main>
+    <section class="main">
+        <div class="slider slider-nav">
+            <div th:each="banner : ${bannerList}">
+                <img class="d-block w-100 featured-img-height"
+                     style="height: 35vw; width: 70vw !important;"
+                     th:src="${banner.imgUrl}" alt="First slide">
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-3 mt-5 text-center">
+        <h2 class="h4">Browse by Genres</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/events"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="far fa-2x fa-calendar-alt"></i>
+						</span> <span> Events </span>
+                        </a>
+
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-2x  fa-utensils"></i>
+						</span> <span> Eat Out </span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-eye fa-2x "></i>
+						</span> <span> Beauty </span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-binoculars fa-2x "></i>
+						</span> <span> Adventure </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-shopping-cart fa-2x "></i>
+						</span> <span> Shopping </span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-stethoscope fa-2x "></i>
+						</span> <span> Health </span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-stethoscope fa-2x "></i>
+						</span> <span> Health </span>
+                    </div>
+                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
+						<span> <i class="fas fa-stethoscope fa-2x "></i>
+						</span> <span> Health </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="container pb-3 mt-5">
+        <h2 class="h4 text-center">Trending in Bangalore</h2>
+        <div class="row mt-3 slider trending-slider mb-0">
+            <div th:each="banner : ${bannerList}"
+                 class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3 mb-1">
+                <div class="card card-cascade narrower mt-5">
+                    <div class="view view-cascade overlay  zoom">
+                        <img class="card-img-top"
+                             src="./img/lights-party-dancing-music.jpg" alt="Card image cap">
+                        <div
+                                class="mask flex-center rgba-black-light waves-effect waves-light  ">
+                            <h5 class="h6 blue p-1 pl-2 pr-2 white-text rounded">VIEW</h5>
+                        </div>
+                    </div>
+                    <!-- transform: rotate(90deg); -->
+                    <div class="card-body card-body-cascade pb-2">
+                        <h3 class="h6 card-title pb-1 mb-0 overflow-ellipsis">Heaven
+                            on Earth Spaaaaaaaaaaaaaa</h3>
+                        <p class="card-text pb-1 mb-0">Indiranagar</p>
+
+                    </div>
+                    <div class="rounded-bottom border-top">
+                        <div class="row m-0 p-0">
+                            <div
+                                    class="align-items-center border-right col-md-4 d-flex green justify-content-center p-2 white-text">
+                                <div class="row">
+                                    <h6 class="m-0 dark-green-text">
+                                        <!-- <i class="fas fa-tag green-text darken-2"></i> -->
+                                        5 deals
+                                    </h6>
+                                </div>
+                            </div>
+                            <div
+                                    class="col-md-4 align-items-center border-right col-md-4 d-flex justify-content-center p-2">
+                                <div class="row">
+                                    <h6 class="m-0">25 % off</h6>
+                                </div>
+
+                            </div>
+                            <div
+                                    class="col-md-4 align-items-center border-right col-md-4 d-flex justify-content-center p-2">
+                                <div class="row">
+                                    <h6 class="m-0">
+                                        <i class="fas fa-rupee-sign pr-1 "></i> 499
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                            class="rounded-bottom border-top lighten-2 text-center text-muted p-2 pr-3 pl-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <a href="/" class="grey-text"> 21 <i
+                                        class="fas fa-eye pr-1 black-text"> </i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 3 <i
+                                        class="far fa-heart pr-1 red-text"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 2 <i
+                                        class="far fa-star pr-1 yellow-text"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="/" class="grey-text"> 11 <i
+                                        class="fas fa-share-alt pr-1 blue-text"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="container pb-3 text-center mt-5">
+        <div class="row">
+            <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
+                <div class="row d-flex justify-content-center row">
+                    <h2 class="h5 text-center">Top Events</h2>
+                </div>
+                <div class="row event-slider mb-0">
+                    <div class="col-md-6 pb-1" th:each="voucher : ${voucherList}">
+                        <div class="card card-cascade narrower">
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text" th:text="${voucher.name}"></p>
+                                <p class="card-text" th:text="${voucher.tiketCount}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-center row">
+                    <i
+                            class="fas fa-chevron-left blue-text p-3 event-slider-left-arrow"></i>
+                    <i
+                            class="fas fa-chevron-right blue-text p-3 event-slider-right-arrow"></i>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <img src="/img/1.jpg" style="width: 100%; height: 100%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container pb-3 text-center">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <!--Panel-->
+                <div class="row card text-center">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col md-10">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural
+                                    lead-in to additional content.</p>
+                            </div>
+                            <div class="col-md-2">
+
+                                <a href="/" class="btn btn-primary">Explore</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <section class="container pb-3 text-center">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <img src="/img/1.jpg" style="width: 100%; height: 100%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
+                <div class="row d-flex justify-content-center row">
+                    <h2 class="h5 text-center">Top Foods</h2>
+                </div>
+                <div class="row food-slider mb-0">
+                    <div th:each="foodVoucher : ${voucherMapByType.food}" class="col-md-6 pb-1">
+                        <div class="card card-cascade narrower">
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text" th:text="${foodVoucher.name}"></p>
+
+                                <p class="card-text" th:text="${foodVoucher.tiketCount} +' ' +'Offres'"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center row">
+                    <i class="fas fa-chevron-left blue-text p-3 food-slider-left-arrow"></i>
+                    <i
+                            class="fas fa-chevron-right blue-text p-3 food-slider-right-arrow"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container pb-3 text-center">
+        <div class="row">
+            <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
+                <div class="row d-flex justify-content-center row">
+                    <h2 class="h5 text-center">Top Spa</h2>
+                </div>
+                <div class="row spa-slider mb-0">
+                    <div th:each="spaVoucher : ${voucherMapByType.spa}" class="col-md-6 pb-1">
+                        <div class="card card-cascade narrower">
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text" th:text="${spaVoucher.name}"></p>
+                                <p class="card-text" th:text="${spaVoucher.tiketCount} +' '+ 'Offers'"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center row">
+                    <i class="fas fa-chevron-left blue-text p-3 spa-slider-left-arrow"></i>
+                    <i
+                            class="fas fa-chevron-right blue-text p-3 spa-slider-right-arrow"></i>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <img src="/img/1.jpg" style="width: 100%; height: 100%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container pb-3 text-center">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col md-12">
+                        <div class="row">
+                            <img src="/img/1.jpg" style="width: 100%; height: 100%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
+                <div class="row d-flex justify-content-center row">
+                    <h2 class="h5 text-center">Top Activities</h2>
+                </div>
+                <div class="row activities-slider mb-0">
+                    <div th:each="activityVoucher : ${voucherMapByType.concert}" class="col-md-6 pb-1">
+                        <div class="card card-cascade narrower">
+                            <div class="view view-cascade overlay">
+                                <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
+                                <a>
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <div class="card-body card-body-cascade">
+                                <p class="card-text" th:text="${activityVoucher.name}"></p>
+                                <p class="card-text" th:text="${activityVoucher.tiketCount} +' '+ 'Offers'"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center row">
+                    <i
+                            class="fas fa-chevron-left blue-text p-3 activities-slider-left-arrow"></i>
+                    <i
+                            class="fas fa-chevron-right blue-text p-3 activities-slider-right-arrow"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="container pb-3 text-center">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 pt-4">
+                <!--Panel-->
+                <div class="row card text-center">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col md-10">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural
+                                    lead-in to additional content.</p>
+                            </div>
+                            <div class="col-md-2">
+
+                                <a href="/" class="btn btn-primary">Explore</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+<!--Modal: Login / Register Form-->
+
+<footer id="footer" th:include="footer :: footer"
+        class="page-footer center-on-small-only unique-color-dark pt-0"></footer>
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdbfull.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+
+<script>
+		$(document).ready(function() {
+
+			$('.slider-cat1').slick({
+				slidesToShow : 3,
+				slidesToScroll : 1,
+			});
+
+			$('.trending-slider').slick({
+				slidesToShow : 4,
+				slidesToScroll : 1,
+			});
+
+			$('.slider-nav').slick({
+				autoplay : true,
+				autoplaySpeed : 2000,
+				centerMode : true,
+				slidesToShow : 1,
+				slidesToScroll : 1,
+				dots : true,
+				focusOnSelect : true,
+				mobileFirst : true,
+				variableWidth : true
+			});
+
+			$('.event-slider').slick({
+				slidesToShow : 2,
+				slidesToScroll : 1,
+				prevArrow : $('.event-slider-left-arrow'),
+				nextArrow : $('.event-slider-right-arrow'),
+			});
+			$('.food-slider').slick({
+				slidesToShow : 2,
+				slidesToScroll : 1,
+				prevArrow : $('.food-slider-left-arrow'),
+				nextArrow : $('.food-slider-right-arrow'),
+			});
+			$('.spa-slider').slick({
+				slidesToShow : 2,
+				slidesToScroll : 1,
+				prevArrow : $('.spa-slider-left-arrow'),
+				nextArrow : $('.spa-slider-right-arrow'),
+			});
+			$('.activities-slider').slick({
+				slidesToShow : 2,
+				slidesToScroll : 1,
+				prevArrow : $('.activities-slider-left-arrow'),
+				nextArrow : $('.activities-slider-right-arrow'),
+			});
+
+			$('a[data-slide]').click(function(e) {
+				e.preventDefault();
+				var slideno = $(this).data('slide');
+				$('.slider-nav').slick('slickGoTo', slideno - 1);
+			});
+		});
+
+</script>
+</body>
+
+</html>
