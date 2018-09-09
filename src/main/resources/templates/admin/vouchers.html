@@ -51,9 +51,9 @@
 
             </td>
 
-            <td th:text="${voucher.voucherId}"></td>
+            <td th:text="${voucher.Id}"></td>
             <td  th:text="${voucher.longDescription}"></td>
-            <td ><a th:text="${voucher.name}" th:href="@{'/admin/voucher/id?id='+${voucher.voucherId}}"></a></td>
+            <td ><a th:text="${voucher.name}" th:href="@{'/admin/voucher/id?id='+${voucher.Id}}"></a></td>
             <td th:text="${voucher.priority}"></td>
             <td th:text="${voucher.rating}"></td>
             <td th:text="${voucher.shortDescription}"></td>

@@ -45,13 +45,28 @@ public class VoucherService {
         return voucherRepository.findAllByOrderByRatingDesc();
     }
 
-    public LinkedHashMap<String, List<Voucher>> getAllVoucherByType() {
-        LinkedHashMap<String, List<Voucher>> vocherMapByType = new LinkedHashMap<>();
-        voucherRepository.findDistinctVoucherType()
-                .forEach((voucherType) -> voucherRepository.findByVoucherType(voucherType)
-                        .forEach((voucher) -> voucher.setTiketCount(ticketRepository.findByVoucherId(voucher.getId()).size())
-                        )
-                );
+    public LinkedHashMap<String ,List<Voucher>> getAllVoucherByType()
+    {
+
+        int ticketCount=0;
+        List<String> list=voucherRepository.findDistinctVoucherType();
+        List<Voucher> ls=new ArrayList<Voucher>();
+        LinkedHashMap<String ,List<Voucher>> vocherMapByType=new LinkedHashMap<String ,List<Voucher>>();
+        for (String voucher: list)
+        {
+
+            ls=voucherRepository.findByVoucherType(voucher);
+            for (Voucher singleVoucher : ls)
+            {
+
+                singleVoucher.setTiketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
+
+
+            }
+
+            vocherMapByType.put(voucher,  ls);
+        }
+
         return vocherMapByType;
     }
 
