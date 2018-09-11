@@ -60,4 +60,5 @@ public class AdminController {
         ticketService.addTicket(ticket);
         return home(model);
     }
+
 }

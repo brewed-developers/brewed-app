@@ -18,9 +18,7 @@
 <button  type="submit"   class="btn btn-success">Add Voucher</button>
 </form>
 
-<form action="#" th:action="@{'/admin/voucher/{id}'(id=1)}"  th:method="delete">
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+
 
 
 
@@ -29,7 +27,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">#</th>
+
             <th scope="col">VoucherId</th>
             <th scope="col">Description</th>
             <th scope="col">Name</th>
@@ -43,13 +41,7 @@
         </thead>
         <tbody>
         <tr th:each="voucher : ${voucherList}">
-            <td>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="a" name="groupOfMaterialRadios">
-                    <label class="form-check-label" for="a">Option 1</label>
-                </div>
 
-            </td>
 
             <td th:text="${voucher.Id}"></td>
             <td  th:text="${voucher.longDescription}"></td>
@@ -60,7 +52,7 @@
             <td th:text="${voucher.show_homepage}"></td>
             <td th:text="${voucher.title}"></td>
             <td th:text="${voucher.voucherType}"></td>
-
+            <td> <button  class="btn btn-danger">Delete</button></td>
 
         </tr>
         </tbody>

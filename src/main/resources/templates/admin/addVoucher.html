@@ -42,7 +42,7 @@
             <input  type="text" id="voucherType" th:field="*{voucherType}" class="form-control" placeholder="Voucher Type" required>
         </div>
         <div hidden class="mystyle col-4" >
-            <input  type="text"  id="voucherId" th:field="*{voucherId}"  class="form-control" placeholder="voucherId" required>
+            <input  type="text"  id="voucherId" th:field="*{Id}"  class="form-control" placeholder="voucherId" required>
         </div>
 
         <div class="mystyle col-12">
@@ -58,7 +58,7 @@
 
 
 <div class="mystyle col-12">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+    <button type="button" class="btn btn-primary" onclick="setdata()" data-toggle="modal" data-target="#basicExampleModal">
         Add Ticket
     </button>
 </div>
@@ -78,7 +78,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div  class="mystyle col-4" >
-                            <input  type="number"  id="tktvoucherID" th:field="*{tktvoucherID}"  th:value="${param.id}"  class="form-control" placeholder="voucherId">
+                            <input  type="number"  id="tktvoucherID" th:field="*{id}"  th:value="${param.id}"  class="form-control" placeholder="voucherId">
                         </div>
 
                         <div class="mystyle col-4" >
@@ -115,7 +115,7 @@
 
 
 <!---to show list of ticket-->
-<form>
+
 
     <div class="card">
         <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Tickets</h3>
@@ -133,27 +133,27 @@
 
                     </tr>
                     <tr th:each="ticket : ${ticketList}">
-                        <form action="#" th:action="@{/admin/ticket}"  th:object="${ticket}" method="post">
-                            <td class="pt-3-half"  th:text="${ticket.id}" contenteditable="true"></td>
-                            <td class="pt-3-half" th:field="*{ticketName}" th:text="${ticket.ticketName}" contenteditable="true"></td>
-                            <td class="pt-3-half" th:field="*{ticketType}" th:text="${ticket.ticketType}" contenteditable="true"></td>
-                            <td class="pt-3-half" th:field="*{originalPrice}" th:text="${ticket.originalPrice}" contenteditable="true"></td>
-                            <td class="pt-3-half" th:field="*{discountedPrice}" th:text="${ticket.discountedPrice}" contenteditable="true"></td>
-                            <td class="pt-3-half" th:field="*{discountPercentage}" th:text="${ticket.discountPercentage}" contenteditable="true"></td>
+
+                            <td class="pt-3-half" id="id" th:text="${ticket.id}" contenteditable="true"></td>
+                            <td class="pt-3-half" id="ticketName"  th:text="${ticket.ticketName}" contenteditable="true"></td>
+                            <td class="pt-3-half"  th:text="${ticket.ticketType}" contenteditable="true"></td>
+                            <td class="pt-3-half"  th:text="${ticket.originalPrice}" contenteditable="true"></td>
+                            <td class="pt-3-half"  th:text="${ticket.discountedPrice}" contenteditable="true"></td>
+                            <td class="pt-3-half"  th:text="${ticket.discountPercentage}" contenteditable="true"></td>
 
 
                             <td>
 
-                                <span class="table-remove"><button type="submit" class="btn btn-danger btn-rounded btn-sm my-0">Upadte</button></span>
+                                <span class="table-remove"><button id="updateButton" onclick="updateFunction()" class="btn btn-danger btn-rounded btn-sm update">Upadte</button></span>
 
                             </td>
-                        </form>
+
                     </tr>
                 </table>
             </div>
         </div>
     </div>
-</form>
+
 
 
 </body>
@@ -162,6 +162,19 @@
 
 </style>
 <script>
+    function setdata()
+{
+    document.getElementById("tktvoucherID").value=document.getElementById("voucherId").value;
+    return true;
+}
+
+function updateFunction()
+{
+ alert("");
+}
+</script>
+
+
     	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="/js/popper.min.js"></script>
