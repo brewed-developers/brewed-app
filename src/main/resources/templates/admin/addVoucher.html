@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 
-<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +12,9 @@
 
     <link href="/css/style.css" rel="stylesheet">
 </head>
+
+
+<!---->
 <body>
 <form action="#" th:action="@{/admin/voucher}"  th:object="${voucher}" method="post"  class="text-center border border-light p-5">
 
@@ -117,50 +119,53 @@
 <!---to show list of ticket-->
 
 
-    <div class="card">
-        <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Tickets</h3>
-        <div class="card-body">
-            <div id="table" class="table-editable">
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4"> Tickets</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
 
-                <table class="table table-bordered table-responsive-md table-striped text-center">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Ticket Name</th>
-                        <th scope="col">Ticket Type</th>
-                        <th scope="col">Original Price</th>
-                        <th scope="col">Discounted Price</th>
-                        <th scope="col">Discount Percentage</th>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ticket Name</th>
+                    <th scope="col">Ticket Type</th>
+                    <th scope="col">Original Price</th>
+                    <th scope="col">Discounted Price</th>
+                    <th scope="col">Discount Percentage</th>
 
-                    </tr>
-                    <tr th:each="ticket : ${ticketList}">
+                </tr>
+                <tr th:each="ticket : ${ticketList}">
 
-                            <td class="pt-3-half" id="id" th:text="${ticket.id}" contenteditable="true"></td>
-                            <td class="pt-3-half" id="ticketName"  th:text="${ticket.ticketName}" contenteditable="true"></td>
-                            <td class="pt-3-half"  th:text="${ticket.ticketType}" contenteditable="true"></td>
-                            <td class="pt-3-half"  th:text="${ticket.originalPrice}" contenteditable="true"></td>
-                            <td class="pt-3-half"  th:text="${ticket.discountedPrice}" contenteditable="true"></td>
-                            <td class="pt-3-half"  th:text="${ticket.discountPercentage}" contenteditable="true"></td>
+                    <td class="pt-3-half" id="id" th:text="${ticket.id}" contenteditable="true"></td>
+                    <td class="pt-3-half" id="ticketName"  th:text="${ticket.ticketName}" contenteditable="true"></td>
+                    <td class="pt-3-half"  th:text="${ticket.ticketType}" contenteditable="true"></td>
+                    <td class="pt-3-half"  th:text="${ticket.originalPrice}" contenteditable="true"></td>
+                    <td class="pt-3-half"  th:text="${ticket.discountedPrice}" contenteditable="true"></td>
+                    <td class="pt-3-half"  th:text="${ticket.discountPercentage}" contenteditable="true"></td>
 
 
-                            <td>
+                    <td>
 
-                                <span class="table-remove"><button id="updateButton" onclick="updateFunction()" class="btn btn-danger btn-rounded btn-sm update">Upadte</button></span>
+                        <span class="table-remove"><button id="updateButton" onclick="updateFunction()" class="btn btn-danger btn-rounded btn-sm update">Upadte</button></span>
 
-                            </td>
+                    </td>
 
-                    </tr>
-                </table>
-            </div>
+                </tr>
+            </table>
         </div>
     </div>
+</div>
 
 
 
 </body>
+
 <style>
  .mystyle{ margin-top:30px }
 
 </style>
+
+
 <script>
     function setdata()
 {
@@ -175,7 +180,7 @@ function updateFunction()
 </script>
 
 
-    	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
@@ -183,7 +188,8 @@ function updateFunction()
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="/js/mdbfull.js"></script>
 <script type="text/javascript" src="/js/slick.min.js"></script>
-</script>
+
+
 </html>
 
 

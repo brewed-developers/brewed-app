@@ -12,6 +12,9 @@ public interface VoucherRepository extends CrudRepository<Voucher, String> {
 
     List<Voucher> findAll();
 
+    //@Query("Delete from voucher where  id=?1")
+    void deleteById(String id);
+
     List<Voucher> findTop5ByRatingGreaterThan(String rating);
 
     List<Voucher> findByVoucherType(String voucherType);

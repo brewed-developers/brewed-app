@@ -70,6 +70,16 @@ public class VoucherService {
         return vocherMapByType;
     }
 
+    public void deleteVoucher(String id)
+    {
+        if(id!=null)
+        {
+           voucherRepository.deleteById(id);
+
+        }
+
+    }
+
     public boolean saveVoucher(Voucher voucher) {
         voucherRepository.save(voucher);
         return true;

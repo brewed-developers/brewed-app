@@ -52,12 +52,32 @@
             <td th:text="${voucher.show_homepage}"></td>
             <td th:text="${voucher.title}"></td>
             <td th:text="${voucher.voucherType}"></td>
-            <td> <button  class="btn btn-danger">Delete</button></td>
+            <td> <button th:onclick="'javascript:deleteVoucher(' + ${voucher.Id} + ');'" class="btn btn-danger">Delete</button></td>
 
         </tr>
         </tbody>
     </table>
 </div>
+
+<script>
+function deleteVoucher(id)
+{
+  $.ajax({
+        type: "DELETE",
+        url: '/admin/voucher/'+id,
+
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+           // alert("Data has been deleted.");
+            location.reload();
+        },
+        error: function () {
+            location.reload();
+        }
+    });
+}
+</script>
+
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="/js/popper.min.js"></script>

@@ -33,8 +33,10 @@ public class AdminController {
         return "admin/addVoucher";
     }
 
-    @DeleteMapping("/voucher")
+    @DeleteMapping("/voucher/{id}")
     public String deleteVoucher(Model model, @PathVariable("id") String id) throws Exception {
+        voucherService.deleteVoucher(id);
+        model.addAttribute("voucherList", voucherService.getAllVouchers());
         return "admin/addVoucher";
     }
 
@@ -60,5 +62,6 @@ public class AdminController {
         ticketService.addTicket(ticket);
         return home(model);
     }
+
 
 }
