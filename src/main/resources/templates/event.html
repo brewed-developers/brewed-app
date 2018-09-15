@@ -16,16 +16,14 @@
     <!-- <link href="css/normalize.css" rel="stylesheet"> -->
 </head>
 <body>
-<header th:include="header :: header"
-        style="position: sticky; top: 0; z-index: 10;"></header>
+<header th:include="header :: header" style="position: sticky; top: 0; z-index: 10;"></header>
 
 <div th:include="header :: loginpopup"></div>
 <main>
-    <div th:text="${voucherList}"></div>
+    <div th:text="${event}"></div>
 </main>
 <footer id="footer" th:include="footer :: footer"
         class="page-footer center-on-small-only unique-color-dark pt-0"></footer>
-
 
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -36,5 +34,5 @@
 <script type="text/javascript" src="/js/mdbfull.js"></script>
 <script type="text/javascript" src="/js/slick.min.js"></script>
 <script>
-		</body>
-	
+</body>
+</html>

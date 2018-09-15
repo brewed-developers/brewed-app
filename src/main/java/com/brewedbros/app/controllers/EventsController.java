@@ -33,7 +33,7 @@ public class EventsController {
     @GetMapping("/events/{eventName}")
     public String getSingleEvents(Model model, @PathVariable("city") String city, @PathVariable("eventName") String eventName) throws Exception {
 
-        model.addAttribute("eventList", voucherService.getSingleEvents(city, eventName));
-        return "events";
+        model.addAttribute("event", voucherService.getSingleEvents(city, eventName));
+        return "event";
     }
 }

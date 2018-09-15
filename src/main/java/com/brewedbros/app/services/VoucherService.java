@@ -7,10 +7,7 @@ import com.brewedbros.app.repositories.VoucherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class VoucherService {
@@ -45,42 +42,38 @@ public class VoucherService {
         return voucherRepository.findAllByOrderByRatingDesc();
     }
 
-    public LinkedHashMap<String ,List<Voucher>> getAllVoucherByType()
-    {
+    public LinkedHashMap<String, List<Voucher>> getAllVoucherByType() {
 
-        int ticketCount=0;
-        List<String> list=voucherRepository.findDistinctVoucherType();
-        List<Voucher> ls=new ArrayList<Voucher>();
-        LinkedHashMap<String ,List<Voucher>> vocherMapByType=new LinkedHashMap<String ,List<Voucher>>();
-        for (String voucher: list)
-        {
+        int ticketCount = 0;
+        List<String> list = voucherRepository.findDistinctVoucherType();
+        List<Voucher> ls = new ArrayList<Voucher>();
+        LinkedHashMap<String, List<Voucher>> vocherMapByType = new LinkedHashMap<String, List<Voucher>>();
+        for (String voucher : list) {
 
-            ls=voucherRepository.findByVoucherType(voucher);
-            for (Voucher singleVoucher : ls)
-            {
+            ls = voucherRepository.findByVoucherType(voucher);
+            for (Voucher singleVoucher : ls) {
 
                 singleVoucher.setTiketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
 
 
             }
 
-            vocherMapByType.put(voucher,  ls);
+            vocherMapByType.put(voucher, ls);
         }
 
         return vocherMapByType;
     }
 
-    public void deleteVoucher(String id)
-    {
-        if(id!=null)
-        {
-           voucherRepository.deleteById(id);
+    public void deleteVoucher(String id) {
+        if (id != null) {
+            voucherRepository.deleteById(id);
 
         }
 
     }
 
     public boolean saveVoucher(Voucher voucher) {
+        voucher.setId(UUID.randomUUID().toString());
         voucherRepository.save(voucher);
         return true;
     }

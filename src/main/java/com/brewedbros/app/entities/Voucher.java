@@ -11,10 +11,7 @@ import javax.persistence.*;
 @Data
 public class Voucher {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "voucher_id", updatable = false, nullable = false)
     private String id;
     private String name;
     private String title;

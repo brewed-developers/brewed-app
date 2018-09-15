@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TicketService {
@@ -19,6 +20,7 @@ public class TicketService {
     }
 
     public Ticket addTicket(Ticket ticket) {
+        ticket.setId(UUID.randomUUID().toString());
         return ticketRepository.save(ticket);
     }
 

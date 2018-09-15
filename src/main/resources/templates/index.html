@@ -239,8 +239,7 @@
         </div>
 
     </section>
-
-    <section class="container pb-3 text-center">
+    <section class="container pb-3 text-center" th:if='${voucherMapByType.containsKey("food")}'>
         <div class="row">
             <div class="col-md-7">
                 <div class="row">
@@ -281,7 +280,7 @@
         </div>
 
     </section>
-    <section class="container pb-3 text-center">
+    <section class="container pb-3 text-center" th:if='${voucherMapByType.containsKey("spa")}'>
         <div class="row">
             <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
                 <div class="row d-flex justify-content-center row">
@@ -322,7 +321,7 @@
         </div>
 
     </section>
-    <section class="container pb-3 text-center">
+    <section class="container pb-3 text-center" th:if='${voucherMapByType.containsKey("concert")}'>
         <div class="row">
             <div class="col-md-7">
                 <div class="row">

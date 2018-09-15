@@ -8,9 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+    private String id;
     private String ticketName;
     private String ticketType;
     private Float originalPrice;

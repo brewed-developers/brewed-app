@@ -12,7 +12,6 @@ public class BannerService {
     @Autowired
     BannerRepository bannerRepository;
 
-
     public List<Banner> getHomepageBanners(String city) {
         return bannerRepository.findByCity(city);
     }

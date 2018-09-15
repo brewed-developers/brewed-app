@@ -19,26 +19,32 @@ public class HomeController {
     @Autowired
     private VoucherService voucherService;
 
+    @GetMapping("")
+    public String home() {
+        return "redirect:/bangalore";
+    }
+
     @GetMapping("/{city}")
-    public String home(Model model, @PathVariable("city") String city1) throws  Exception{
+    public String home(Model model, @PathVariable("city") String city1) {
 
         System.out.println("City" + city1);
 
-      // model.addAttribute("voucherList", new ObjectMapper().writeValueAsString(voucherService.getAllVoucherByRating()));
+        // model.addAttribute("voucherList", new ObjectMapper().writeValueAsString(voucherService.getAllVoucherByRating()));
 
-       model.addAttribute("bannerList",bannerService.getHomepageBanners(city1));
-       model.addAttribute("voucherList",voucherService.getAllVoucherByRating());
-       model.addAttribute("voucherMapByType",voucherService.getAllVoucherByType());
+        model.addAttribute("bannerList", bannerService.getHomepageBanners(city1));
+        model.addAttribute("voucherList", voucherService.getAllVoucherByRating());
+        model.addAttribute("voucherMapByType", voucherService.getAllVoucherByType());
         return "index";
-       //return  "minimumcode";
+        //return  "minimumcode";
     }
+
     //tempoeary put in admin controller
     @GetMapping("vouchers")
 
-    public String home(Model model) throws  Exception{
+    public String home(Model model) {
 
 
-        model.addAttribute("voucherList",voucherService.getAllVouchers());
+        model.addAttribute("voucherList", voucherService.getAllVouchers());
 
         //
 

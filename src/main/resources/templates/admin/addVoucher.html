@@ -44,7 +44,7 @@
             <input  type="text" id="voucherType" th:field="*{voucherType}" class="form-control" placeholder="Voucher Type" required>
         </div>
         <div hidden class="mystyle col-4" >
-            <input  type="text"  id="voucherId" th:field="*{Id}"  class="form-control" placeholder="voucherId" required>
+            <input  type="text"  id="voucherId" th:field="*{Id}"  class="form-control" name="x" placeholder="voucherId">
         </div>
 
         <div class="mystyle col-12">
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="mystyle col-4" >
-                            <input   type="text"  id="ticketName" th:field="*{ticketName}"  class="form-control" placeholder="Ticket Name" required>
+                            <input   type="text"  id="tktName" th:field="*{ticketName}"  class="form-control" placeholder="Ticket Name" required>
                         </div>
                         <div class="mystyle col-4" >
                             <input  type="text" id="ticketType" th:field="*{ticketType}"  class="form-control" placeholder="Ticket Type" required>
