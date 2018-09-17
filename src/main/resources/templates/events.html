@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Brewed Bros</title>
 
-    <link rel="stylesheet" href="css/fontawesome_all.css">
+    <link rel="stylesheet" href="/css/fontawesome_all.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mdbfull.css" rel="stylesheet">
     <link href="/css/slick.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<header th:include="header :: header"
+<header th:include="header :: header"184
         style="position: sticky; top: 0; z-index: 10;"></header>
 
 <main>
@@ -26,29 +26,9 @@
         <div class="main">
 
             <div class="slider slider-nav">
-                <div>
+                <div th:each="banner : ${bannerList}">
                     <img class="d-block w-100 featured-img-height"
-                         style="height: 25vw; width: 50vw !important;" src="./img/1.jpg"
-                         alt="First slide">
-                </div>
-                <div>
-                    <img class="d-block w-100 featured-img-height"
-                         style="height: 25vw; width: 50vw !important;" src="./img/2.jpg"
-                         alt="First slide">
-                </div>
-                <div>
-                    <img class="d-block w-100 featured-img-height"
-                         style="height: 25vw; width: 50vw !important;" src="./img/3.jpg"
-                         alt="First slide">
-                </div>
-                <div>
-                    <img class="d-block w-100 featured-img-height"
-                         style="height: 25vw; width: 50vw !important;" src="./img/1.jpg"
-                         alt="First slide">
-                </div>
-                <div>
-                    <img class="d-block w-100 featured-img-height"
-                         style="height: 25vw; width: 50vw !important;" src="./img/2.jpg"
+                         style="height: 25vw; width: 50vw !important;" th:src="${banner.imgUrl}"
                          alt="First slide">
                 </div>
             </div>
@@ -148,14 +128,14 @@
             </div>
         </div>
     </section>
-
+<!--<div th:text="${eventList}"></div>-->
     <section class="container pb-3">
         <div class="row">
-            <div th:each="banner : ${event1}" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div th:each="event : ${eventList}" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="card card-cascade narrower mt-5">
                     <div class="view view-cascade overlay  zoom">
                         <img class="card-img-top"
-                             src="./img/lights-party-dancing-music.jpg" alt="Card image cap">
+                             src="/img/lights-party-dancing-music.jpg" alt="Card image cap">
                         <div
                                 class="mask flex-center rgba-black-light waves-effect waves-light  ">
                             <h5 class="h6 blue p-1 pl-2 pr-2 white-text rounded">VIEW</h5>
@@ -163,8 +143,8 @@
                     </div>
                     <!-- transform: rotate(90deg); -->
                     <div class="card-body card-body-cascade pb-2">
-                        <h3 class="h6 card-title pb-1 mb-0">Heaven on Earth Spa</h3>
-                        <p class="card-text pb-1 mb-0">Indiranagar</p>
+                        <h3 class="h6 card-title pb-1 mb-0" th:text="${event.name}"></h3>
+                        <p class="card-text pb-1 mb-0" th:text="${event.area != null ? event.area : '&nbsp;' }"></p>
 
                     </div>
                     <div class="rounded-bottom border-top">
@@ -292,6 +272,7 @@
 			});
 
 		});
+
 
 
 

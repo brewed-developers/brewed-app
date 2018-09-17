@@ -37,49 +37,69 @@
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="/events"
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/events}"
                            class="p-2 d-flex flex-column align-items-center text-decoration-none">
 							<span> <i class="far fa-2x fa-calendar-alt"></i>
 						</span> <span> Events </span>
                         </a>
 
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-2x  fa-utensils"></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/eat-outs}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-2x  fa-utensils"></i>
 						</span> <span> Eat Out </span>
+                        </a>
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-eye fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/beauty}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-eye fa-2x"></i>
 						</span> <span> Beauty </span>
+                        </a>
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-binoculars fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/adventure}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-binoculars fa-2x"></i>
 						</span> <span> Adventure </span>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-shopping-cart fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/shopping}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-shopping-cart fa-2x"></i>
 						</span> <span> Shopping </span>
+                        </a>
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-stethoscope fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/health}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-stethoscope fa-2x"></i>
 						</span> <span> Health </span>
+                        </a>
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-stethoscope fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/health}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-stethoscope fa-2x"></i>
 						</span> <span> Health </span>
+                        </a>
                     </div>
-                    <div class="col-md-3 d-flex flex-column align-items-center p-2">
-						<span> <i class="fas fa-stethoscope fa-2x "></i>
+                    <div class="col-md-3">
+                        <a th:href="@{${#httpServletRequest.requestURI}}+@{/health}"
+                           class="p-2 d-flex flex-column align-items-center text-decoration-none">
+							<span> <i class="fas fa-stethoscope fa-2x"></i>
 						</span> <span> Health </span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
     <section class="container pb-3 mt-5">
@@ -181,7 +201,7 @@
                             </div>
                             <div class="card-body card-body-cascade">
                                 <p class="card-text" th:text="${voucher.name}"></p>
-                                <p class="card-text" th:text="${voucher.tiketCount}"></p>
+                                <p class="card-text" th:text="${voucher.ticketCount}"></p>
                             </div>
                         </div>
                     </div>
@@ -255,7 +275,7 @@
                     <h2 class="h5 text-center">Top Foods</h2>
                 </div>
                 <div class="row food-slider mb-0">
-                    <div th:each="foodVoucher : ${voucherMapByType.food}" class="col-md-6 pb-1">
+                    <div th:each="foodVoucher : ${voucherMapByType.food}" class="pb-1" style="margin:auto 10px">
                         <div class="card card-cascade narrower">
                             <div class="view view-cascade overlay">
                                 <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
@@ -266,7 +286,7 @@
                             <div class="card-body card-body-cascade">
                                 <p class="card-text" th:text="${foodVoucher.name}"></p>
 
-                                <p class="card-text" th:text="${foodVoucher.tiketCount} +' ' +'Offres'"></p>
+                                <p class="card-text" th:text="${foodVoucher.ticketCount} +' ' +'Offres'"></p>
                             </div>
                         </div>
                     </div>
@@ -287,7 +307,7 @@
                     <h2 class="h5 text-center">Top Spa</h2>
                 </div>
                 <div class="row spa-slider mb-0">
-                    <div th:each="spaVoucher : ${voucherMapByType.spa}" class="col-md-6 pb-1">
+                    <div th:each="spaVoucher : ${voucherMapByType.spa}" class="pb-1">
                         <div class="card card-cascade narrower">
                             <div class="view view-cascade overlay">
                                 <img class="card-img-top" src="./img/1.jpg" alt="Card image cap">
@@ -297,7 +317,7 @@
                             </div>
                             <div class="card-body card-body-cascade">
                                 <p class="card-text" th:text="${spaVoucher.name}"></p>
-                                <p class="card-text" th:text="${spaVoucher.tiketCount} +' '+ 'Offers'"></p>
+                                <p class="card-text" th:text="${spaVoucher.ticketCount} +' '+ 'Offers'"></p>
                             </div>
                         </div>
                     </div>
@@ -348,7 +368,7 @@
                             </div>
                             <div class="card-body card-body-cascade">
                                 <p class="card-text" th:text="${activityVoucher.name}"></p>
-                                <p class="card-text" th:text="${activityVoucher.tiketCount} +' '+ 'Offers'"></p>
+                                <p class="card-text" th:text="${activityVoucher.ticketCount} +' '+ 'Offers'"></p>
                             </div>
                         </div>
                     </div>

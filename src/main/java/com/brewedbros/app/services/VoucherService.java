@@ -17,14 +17,14 @@ public class VoucherService {
     TicketRepository ticketRepository;
 
 
-    public List<Voucher> getAllVouchers() {
+    public Iterable<Voucher> getAllVouchers() {
         return voucherRepository.findAll();
     }
 
     public List<Voucher> getAllVoucherByRating() {
         List<Voucher> voucherList = voucherRepository.findTop5ByRatingGreaterThan("2");
         voucherList.forEach((voucher) ->
-                voucher.setTiketCount(ticketRepository.findByVoucherId(voucher.getId()).size())
+                voucher.setTicketCount(ticketRepository.findByVoucherId(voucher.getId()).size())
         );
         return voucherList;
 
@@ -53,7 +53,7 @@ public class VoucherService {
             ls = voucherRepository.findByVoucherType(voucher);
             for (Voucher singleVoucher : ls) {
 
-                singleVoucher.setTiketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
+                singleVoucher.setTicketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
 
 
             }

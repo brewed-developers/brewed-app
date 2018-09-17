@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface VoucherRepository extends CrudRepository<Voucher, String> {
 
-    List<Voucher> findAll();
+    //List<Voucher> find();
 
     //@Query("Delete from voucher where  id=?1")
     void deleteById(String id);

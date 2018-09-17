@@ -11,8 +11,6 @@ import java.util.List;
 @Repository
 public interface TicketRepository extends CrudRepository<Ticket, String> {
 
-    Ticket save(Ticket ticket);
-
     List<Ticket> findByVoucherId(String voucherId);
 
 }
