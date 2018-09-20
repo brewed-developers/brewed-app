@@ -73,9 +73,11 @@ public class VoucherService {
     }
 
     public boolean saveVoucher(Voucher voucher) {
-        voucher.setId(UUID.randomUUID().toString());
-        voucherRepository.save(voucher);
-        return true;
+        if(voucher.getId()!=null && voucher.getId()!=""){voucherRepository.save(voucher);return true;}
+        else{ voucher.setId(UUID.randomUUID().toString());voucherRepository.save(voucher);return true;}
+
+
+
     }
 
     public Optional<Voucher> getVoucher(String voucherid) {

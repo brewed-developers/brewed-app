@@ -42,7 +42,7 @@
                    placeholder="Short Description" required>
         </div>
         <div class="mystyle col-4">
-            <input type="number" id="homepage" min="0" max="1" th:field="*{showHomePage}" value="1"
+            <input type="text" id="homepage" min="0" max="1" th:field="*{showHomePage}" value="1"
                    class="form-control" placeholder="Show on Homepage" required>
         </div>
 
@@ -88,10 +88,7 @@
             <form action="#" th:action="@{/admin/ticket}" th:object="${ticket}" method="post">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="mystyle col-4">
-                            <input type="text" id="tktvoucherID" th:field="*{voucherId}" th:value="${param.id}"
-                                   class="form-control" placeholder="voucherId">
-                        </div>
+
 
                         <div class="mystyle col-4">
                             <input type="text" id="tktName" th:field="*{ticketName}" class="form-control"
@@ -112,6 +109,14 @@
                         <div class="mystyle col-4">
                             <input type="number" id="discountPercentage" th:field="*{discountPercentage}"
                                    class="form-control" placeholder="Discounted Percentage" required>
+                        </div>
+                        <div hidden class="mystyle col-4">
+                            <input  type="text" id="tktID" th:field="*{id}"
+                                   class="form-control" placeholder="voucherId">
+                        </div>
+                        <div hidden class="mystyle col-4">
+                            <input  type="text" id="tktvoucherID" th:field="*{voucherId}" th:value="${param.id}"
+                                   class="form-control" placeholder="voucherId">
                         </div>
 
 
@@ -149,7 +154,7 @@
                 </tr>
                 <tr th:each="ticket : ${ticketList}">
 
-                    <td id="id" data-id="${ticket.id}" th:text="${ticket.id}"></td>
+                    <td id="id"  data-id="${ticket.id}" th:text="${ticket.id}"></td>
                     <td id="ticketName" th:text="${ticket.ticketName}" contenteditable="true"></td>
                     <td th:text="${ticket.ticketType}" contenteditable="true"></td>
                     <td th:text="${ticket.originalPrice}" contenteditable="true"></td>
@@ -157,7 +162,9 @@
                     <td th:text="${ticket.discountPercentage}" contenteditable="true"></td>
                     <td class="p-2">
                         <span class="table-remove">
-                            <button id="updateButton" th:onclick="'javascript:updateFunction(this);'"
+                            <button id="updateButton" data-toggle="modal"
+                                    data-target="#basicExampleModal"
+                                    th:onclick="'javascript:updateFunction(\'' + ${ticket.id} + '\');'"
                                     class="btn btn-danger btn-rounded btn-sm update">Upadte</button>
                         </span>
                     </td>
@@ -181,20 +188,47 @@
     function setdata()
     {
         document.getElementById("tktvoucherID").value=document.getElementById("voucherId").value;
+
         return true;
     }
 
-    function updateFunction(ticket)
+
+    function updateFunction(id)
     {
-        console.log(id.value);
-    }
-    $(document).ready(function(){
-        $('.collapse').collapse()
+        document.getElementById("tktvoucherID").value=document.getElementById("voucherId").value;
+
+        $.ajax({
+        type: "GET",
+        url: '/admin/ticket/'+id,
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+           $("#tktvoucherID").val(data.voucherId);
+           $("#tktName").val(data.ticketName);
+           $("#originalPrice").val(data.originalPrice);
+           $("#discountedPrice").val(data.discountedPrice);
+           $("#discountPercentage").val(data.discountPercentage);
+           $("#tktID").val(data.id);
+
+
+        },
+        error: function (data) {
+            alert(data);
+        }
     });
 
 
 
+
+
+    }
+
+
+
 </script>
+
+
+
+
 
 
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>

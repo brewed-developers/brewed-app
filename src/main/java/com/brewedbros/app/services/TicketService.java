@@ -20,8 +20,14 @@ public class TicketService {
     }
 
     public Ticket addTicket(Ticket ticket) {
-        ticket.setId(UUID.randomUUID().toString());
-        return ticketRepository.save(ticket);
+        if(ticket.getId()!=null && ticket.getId()!="" ){return ticketRepository.save(ticket);}
+
+        else{ticket.setId(UUID.randomUUID().toString());return ticketRepository.save(ticket);}
+
+
+
+
+
     }
 
 

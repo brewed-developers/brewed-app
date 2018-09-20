@@ -3,13 +3,19 @@ package com.brewedbros.app.controllers;
 
 import com.brewedbros.app.entities.Ticket;
 import com.brewedbros.app.entities.Voucher;
+import com.brewedbros.app.repositories.TicketRepository;
 import com.brewedbros.app.services.TicketService;
 import com.brewedbros.app.services.VoucherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 @RequestMapping("/admin")
 @Controller
@@ -19,6 +25,8 @@ public class AdminController {
     VoucherService voucherService;
     @Autowired
     TicketService ticketService;
+    @Autowired
+    TicketRepository ticketRepository;
 
     @GetMapping("/vouchers")
     public String home(Model model) throws Exception {
@@ -62,6 +70,12 @@ public class AdminController {
         ticketService.addTicket(ticket);
         return home(model);
     }
+    @GetMapping("/ticket/{id}")
+    ResponseEntity<Object> getUser(@PathVariable("id") String id	 )
+    {
 
-
+        return new ResponseEntity<Object>(ticketRepository.findById(id), HttpStatus.OK);
+    }
 }
+
+
