@@ -150,22 +150,29 @@
                     <th scope="col">Discounted Price</th>
                     <th scope="col">Discount Percentage</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Action</th>
 
                 </tr>
                 <tr th:each="ticket : ${ticketList}">
 
                     <td id="id"  data-id="${ticket.id}" th:text="${ticket.id}"></td>
-                    <td id="ticketName" th:text="${ticket.ticketName}" contenteditable="true"></td>
-                    <td th:text="${ticket.ticketType}" contenteditable="true"></td>
-                    <td th:text="${ticket.originalPrice}" contenteditable="true"></td>
-                    <td th:text="${ticket.discountedPrice}" contenteditable="true"></td>
-                    <td th:text="${ticket.discountPercentage}" contenteditable="true"></td>
+                    <td id="ticketName" th:text="${ticket.ticketName}" contenteditable="false"></td>
+                    <td th:text="${ticket.ticketType}" contenteditable="false"></td>
+                    <td th:text="${ticket.originalPrice}" contenteditable="false"></td>
+                    <td th:text="${ticket.discountedPrice}" contenteditable="false"></td>
+                    <td th:text="${ticket.discountPercentage}" contenteditable="false"></td>
                     <td class="p-2">
                         <span class="table-remove">
                             <button id="updateButton" data-toggle="modal"
                                     data-target="#basicExampleModal"
                                     th:onclick="'javascript:updateFunction(\'' + ${ticket.id} + '\');'"
-                                    class="btn btn-danger btn-rounded btn-sm update">Upadte</button>
+                                    class="btn btn-primary btn-rounded btn-sm update">Upadte</button>
+                        </span>
+                    </td>
+                    <td class="p-2">
+                        <span class="table-remove">
+                            <button id="deleteTicket" th:onclick="'javascript:deleteFunction(\'' + ${ticket.id} + '\');'"
+                                    class="btn btn-danger btn-rounded btn-sm update">Delete</button>
                         </span>
                     </td>
                 </tr>
@@ -221,6 +228,23 @@
 
 
     }
+
+    function deleteFunction(id)
+{
+  $.ajax({
+        type: "DELETE",
+        url: '/admin/ticket/'+id,
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+           // alert("Data has been deleted.");
+            location.reload();
+        },
+        error: function () {
+            location.reload();
+        }
+    });
+}
+
 
 
 

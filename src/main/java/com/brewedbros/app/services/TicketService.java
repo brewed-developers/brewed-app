@@ -24,11 +24,13 @@ public class TicketService {
 
         else{ticket.setId(UUID.randomUUID().toString());return ticketRepository.save(ticket);}
 
-
-
-
-
     }
 
+    public boolean deleteVoucher(String id) {
+        if (id != null) {
+            ticketRepository.deleteById(id);
 
+        }
+     return  true;
+    }
 }

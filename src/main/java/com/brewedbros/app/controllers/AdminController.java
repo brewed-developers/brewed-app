@@ -76,6 +76,14 @@ public class AdminController {
 
         return new ResponseEntity<Object>(ticketRepository.findById(id), HttpStatus.OK);
     }
+
+    @DeleteMapping("/ticket/{id}")
+    ResponseEntity<Object> deleteTicket(@PathVariable("id") String id	 )
+    {
+
+        return new ResponseEntity<Object>(ticketService.deleteVoucher(id), HttpStatus.OK);
+    }
+
 }
 
 
