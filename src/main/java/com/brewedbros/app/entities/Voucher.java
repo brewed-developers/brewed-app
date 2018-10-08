@@ -34,7 +34,6 @@ public class Voucher {
     @Transient
     private List<Section> sections;
     @Transient
-    @OneToMany
     private List<Ticket> tickets = new ArrayList<Ticket>();
     @Transient
     private Location location;

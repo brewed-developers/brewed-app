@@ -1,6 +1,7 @@
 package com.brewedbros.app.services;
 
 import com.brewedbros.app.constants.VoucherConstants;
+import com.brewedbros.app.entities.Ticket;
 import com.brewedbros.app.entities.Voucher;
 import com.brewedbros.app.repositories.TicketRepository;
 import com.brewedbros.app.repositories.VoucherRepository;
@@ -30,8 +31,8 @@ public class VoucherService {
 
     }
 
-    public List<Voucher> getVoucherByTypeAndCity(String voucherType,String city) {
-        return voucherRepository.findByVoucherTypeAndCity(voucherType,city);
+    public List<Voucher> getVoucherByTypeAndCity(String voucherType, String city) {
+        return voucherRepository.findByVoucherTypeAndCity(voucherType, city);
     }
 
     public List<Voucher> getVoucherByRatingAsc() {
@@ -50,7 +51,7 @@ public class VoucherService {
         LinkedHashMap<String, List<Voucher>> vocherMapByType = new LinkedHashMap<String, List<Voucher>>();
         for (String voucher : list) {
 
-            ls = voucherRepository.findByVoucherTypeAndCity(voucher,city);
+            ls = voucherRepository.findByVoucherTypeAndCity(voucher, city);
             for (Voucher singleVoucher : ls) {
 
                 singleVoucher.setTicketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
@@ -73,9 +74,14 @@ public class VoucherService {
     }
 
     public boolean saveVoucher(Voucher voucher) {
-        if(voucher.getId()!=null && voucher.getId()!=""){voucherRepository.save(voucher);return true;}
-        else{ voucher.setId(UUID.randomUUID().toString());voucherRepository.save(voucher);return true;}
-
+        if (voucher.getId() != null && voucher.getId() != "") {
+            voucherRepository.save(voucher);
+            return true;
+        } else {
+            voucher.setId(UUID.randomUUID().toString());
+            voucherRepository.save(voucher);
+            return true;
+        }
 
 
     }
@@ -112,8 +118,10 @@ public class VoucherService {
      * @param eventName : Name of Event
      * @return: Single Event Vouchers (Voucher of Type Event)
      */
-    public List<Voucher> getSingleEvents(String city, String eventName) {
-        return voucherRepository.findByCityAndNameAndVoucherType(city, eventName, VoucherConstants.EVENTS);
+    public Voucher getSingleEvents(String city, String eventName) {
+        Voucher voucher = voucherRepository.findByCityAndNameAndVoucherType(city, eventName, VoucherConstants.EVENTS);
+        voucher.setTickets(ticketRepository.findByVoucherId(voucher.getId()));
+        return voucher;
     }
 
     private List<Voucher> getVouchersByCityAndVoucherType(String city, String type) {
