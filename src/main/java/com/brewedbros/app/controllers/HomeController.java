@@ -25,15 +25,16 @@ public class HomeController {
     }
 
     @GetMapping("/{city}")
-    public String home(Model model, @PathVariable("city") String city1) {
+    public String home(Model model, @PathVariable("city") String city) {
 
-        System.out.println("City" + city1);
+        System.out.println("City" + city);
 
         // model.addAttribute("voucherList", new ObjectMapper().writeValueAsString(voucherService.getAllVoucherByRating()));
 
-        model.addAttribute("bannerList", bannerService.getHomepageBanners(city1));
+        model.addAttribute("bannerList", bannerService.getHomepageBanners(city));
         model.addAttribute("voucherList", voucherService.getAllVoucherByRating());
-        model.addAttribute("voucherMapByType", voucherService.getAllVoucherByType());
+        model.addAttribute("voucherMapByType", voucherService.getAllVoucherForHomePage(city));
+
         return "index";
         //return  "minimumcode";
     }

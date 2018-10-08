@@ -58,7 +58,7 @@ public class AdminController {
     }
 
     @GetMapping("/voucher/{id}")
-    public String getVoucherAndTicket(Model model, @RequestParam("id") String id) throws Exception {
+    public String getVoucherAndTicket(Model model, @PathVariable("id") String id) throws Exception {
         model.addAttribute("voucher", voucherService.getVoucher(id));
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("ticketList", ticketService.getTicketsbyId(id));

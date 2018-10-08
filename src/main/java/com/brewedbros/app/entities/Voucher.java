@@ -27,6 +27,8 @@ public class Voucher {
     private Long noOfBookMarks;
     private Long noOfShares;
     private int ticketCount;
+    private String imgURL;
+
     @Column(name = "show_home_page", nullable = false, columnDefinition = "bool default false")
     private boolean showHomePage;
     @Transient

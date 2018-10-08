@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -8,18 +8,22 @@
     <title>Brewed Bros</title>
 
     <link rel="stylesheet" href="/css/fontawesome_all.css">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="/css/bootstrap.min.css" rel="stylesheet" >-->
     <link href="/css/mdbfull.css" rel="stylesheet">
     <link href="/css/slick.min.css" rel="stylesheet">
     <link href="/css/slick-theme.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
 </head>
-<body>
+<body id="body" style="padding-right:0px !important">
 <header th:include="header :: header"
         style="position: sticky; top: 0; z-index: 10;"></header>
 
 <div th:include="header :: loginpopup"></div>
+<!--Modal: Login / Register Form-->
+<div>
+
+</div>
 <main>
     <section class="main">
         <div class="slider slider-nav">
@@ -184,7 +188,7 @@
     </section>
 
 
-    <section  class="container pb-3 text-center mt-5">
+    <section class="container pb-3 text-center mt-5">
         <div class="row">
             <div class="col-md-5 d-flex flex-column justify-content-between pt-2">
                 <div class="row d-flex justify-content-center row">
@@ -227,7 +231,6 @@
         </div>
 
     </section>
-
 
 
     <section class="container pb-3 text-center">
@@ -483,7 +486,14 @@
 				var slideno = $(this).data('slide');
 				$('.slider-nav').slick('slickGoTo', slideno - 1);
 			});
+			/*
+        code is written to fix login popup issue due to which whole body was getting shifted to right side every time when pop gets opened.
+        */
+        $("#modalLRForm").on('hidden.bs.modal', function(){
+          document.getElementById("body").style.paddingRight = "0px";
+        });
 		});
+
 
 </script>
 </body>

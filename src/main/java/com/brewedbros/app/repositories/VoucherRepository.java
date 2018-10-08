@@ -17,7 +17,7 @@ public interface VoucherRepository extends CrudRepository<Voucher, String> {
 
     List<Voucher> findTop5ByRatingGreaterThan(String rating);
 
-    List<Voucher> findByVoucherType(String voucherType);
+    List<Voucher> findByVoucherTypeAndCity(String voucherType,String city);
 
     List<Voucher> findAllByOrderByRatingAsc();
 

@@ -30,8 +30,8 @@ public class VoucherService {
 
     }
 
-    public List<Voucher> getVoucherByType(String voucherType) {
-        return voucherRepository.findByVoucherType(voucherType);
+    public List<Voucher> getVoucherByTypeAndCity(String voucherType,String city) {
+        return voucherRepository.findByVoucherTypeAndCity(voucherType,city);
     }
 
     public List<Voucher> getVoucherByRatingAsc() {
@@ -42,7 +42,7 @@ public class VoucherService {
         return voucherRepository.findAllByOrderByRatingDesc();
     }
 
-    public LinkedHashMap<String, List<Voucher>> getAllVoucherByType() {
+    public LinkedHashMap<String, List<Voucher>> getAllVoucherForHomePage(String city) {
 
         int ticketCount = 0;
         List<String> list = voucherRepository.findDistinctVoucherType();
@@ -50,7 +50,7 @@ public class VoucherService {
         LinkedHashMap<String, List<Voucher>> vocherMapByType = new LinkedHashMap<String, List<Voucher>>();
         for (String voucher : list) {
 
-            ls = voucherRepository.findByVoucherType(voucher);
+            ls = voucherRepository.findByVoucherTypeAndCity(voucher,city);
             for (Voucher singleVoucher : ls) {
 
                 singleVoucher.setTicketCount(ticketRepository.findByVoucherId(singleVoucher.getId()).size());
@@ -80,8 +80,8 @@ public class VoucherService {
 
     }
 
-    public Optional<Voucher> getVoucher(String voucherid) {
-        return voucherRepository.findById(voucherid);
+    public Voucher getVoucher(String voucherid) {
+        return voucherRepository.findById(voucherid).get();
     }
 
     /**
@@ -123,6 +123,4 @@ public class VoucherService {
     private List<Voucher> getVochersByCityAreaAndVoucherType(String city, String area, String type) {
         return voucherRepository.findByCityAndAreaAndVoucherType(city, area, type);
     }
-
-
 }

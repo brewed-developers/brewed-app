@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Brewed Bros</title>
+
     <link rel="stylesheet" href="/css/fontawesome_all.css">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mdbfull.css" rel="stylesheet">
@@ -13,12 +14,12 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body id="body">
-<header th:include="header :: header" 184
+<header th:include="header :: header"184
         style="position: sticky; top: 0; z-index: 10;"></header>
 <div th:include="header :: loginpopup"></div>
 <main>
     <section class="container-fluid mt-3">
-        <h1 class="h3">Events in Bangalore</h1>
+        <h1 class="h3">Spas in Bangalore</h1>
     </section>
     <section class="mb-5">
 
@@ -67,7 +68,8 @@
 				<span> <i class="far fa-2x fa-calendar-alt"></i>
 				</span> <span> Events </span>
             </div>
-            <div class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
+            <div
+                    class="grey lighten-4 grey-text align-items-center  col-4 col-xs-4  col-sm-2 d-flex flex-column p-2">
 				<span> <i class="fas fa-stethoscope fa-2x "></i>
 				</span> <span> Health </span>
             </div>
@@ -81,52 +83,52 @@
         <div class="row">
             <div class="col-12 col-lg-3 col-md-3 col-sm-6 col-xs-12">
 
-                <select class="mdb-select colorful-select dropdown-primary"
-                        searchable="Search here.." onchange="getVouchersByFilter('area',this.value)">
+                <select class="mdb-select colorful-select dropdown-primary" multiple
+                        searchable="Search here..">
                     <option value="" disabled selected>Where</option>
-                    <option value="Koramangala">Koramangala</option>
-                    <option value="MG Road">MG Road</option>
-                    <option value="Whitefield">Whitefield</option>
-                    <option value="Indiranagar">Indiranagar</option>
-                    <option value="Masure Road">Masure Road</option>
+                    <option value="1">Koramangala</option>
+                    <option value="2">MG Road</option>
+                    <option value="3">Whitefield</option>
+                    <option value="4">Indiranagar</option>
+                    <option value="5">Masure Road</option>
                 </select>
 
             </div>
             <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
-                <select class="mdb-select" onchange="getVouchersByFilter('time',this.value)">
+                <select class="mdb-select">
                     <option value="" disabled selected>When</option>
-                    <option value="today">Today</option>
-                    <option value="tomorrow">Tomorrow</option>
-                    <option value="this weekend">This Weekend</option>
-                    <option value="this week">This Week</option>
-                    <option value="this month">This Month</option>
+                    <option value="1">Today</option>
+                    <option value="2">Tomarrow</option>
+                    <option value="3">This Weekend</option>
+                    <option value="3">This Week</option>
+                    <option value="3">This Month</option>
                 </select>
 
             </div>
             <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
 
-                <select class="mdb-select" onchange="getVouchersByFilter('price',this.value)">
+                <select class="mdb-select">
                     <option value="" disabled selected>How much</option>
-                    <option value="0to500">0 - 500</option>
-                    <option value="501-to1000">501 - 1000</option>
-                    <option value="10001to2000">1001 - 2000</option>
-                    <option value="2000plus">2000 above</option>
+                    <option value="1">0 - 500</option>
+                    <option value="2">501 - 1000</option>
+                    <option value="3">1001 - 2000</option>
+                    <option value="3">2000 above</option>
 
                 </select>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-12 col-sm-6 col-12">
-                <select class="mdb-select" onchange="getVouchersByFilter('sort',this.value)">
+                <select class="mdb-select">
                     <option value="" disabled selected>Sort by</option>
-                    <option value="popularity">Popularity</option>
-                    <option value="recommended">Recommended</option>
-                    <!--<option value="nearbyme">Near by me</option>-->
-                    <option value="pricehightolow">Price high to low</option>
-                    <option value="pricelowtohigh">Price low to high</option>
+                    <option value="1">Popularity</option>
+                    <option value="1">Recommended</option>
+                    <option value="2">Near by me</option>
+                    <option value="3">Price high to low</option>
+                    <option value="3">Price low to high</option>
                 </select>
             </div>
         </div>
     </section>
-    <!--<div th:text="${eventList}"></div>-->
+<!--<div th:text="${eventList}"></div>-->
     <section class="container pb-3">
         <div class="row">
             <div th:each="event : ${eventList}" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
@@ -276,19 +278,6 @@
         $("#modalLRForm").on('hidden.bs.modal', function(){
           document.getElementById("body").style.paddingRight = "0px";
         });
-
-    function getVouchersByFilter(key, value) {
-    var uri=window.location.href;
-      var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-      var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-      if (uri.match(re)) {
-        uri= uri.replace(re, '$1' + key + "=" + value + '$2');
-      }
-      else {
-        uri= uri + separator + key + "=" + value;
-      }
-      window.location=uri;
-    }
 
 
 
