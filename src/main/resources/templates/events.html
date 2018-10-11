@@ -131,17 +131,17 @@
         <div class="row">
             <div th:each="event : ${eventList}" class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-3">
                 <div class="card card-cascade narrower mt-5">
-                    <div class="view view-cascade overlay  zoom">
+                    <a th:href="@{${#httpServletRequest.requestURI}} + @{'/' + ${event.name}}"><div class="view view-cascade overlay  zoom">
                         <img class="card-img-top"
                              src="/img/lights-party-dancing-music.jpg" alt="Card image cap">
                         <div
                                 class="mask flex-center rgba-black-light waves-effect waves-light  ">
                             <h5 class="h6 blue p-1 pl-2 pr-2 white-text rounded">VIEW</h5>
                         </div>
-                    </div>
+                    </div></a>
                     <!-- transform: rotate(90deg); -->
                     <div class="card-body card-body-cascade pb-2">
-                        <h3 class="h6 card-title pb-1 mb-0" th:text="${event.name}"></h3>
+                        <a th:href="@{${#httpServletRequest.requestURI}} + @{'/' + ${event.name}}"><h3 class="h6 card-title pb-1 mb-0 text-truncate" th:text="${event.name}"></h3></a>
                         <p class="card-text pb-1 mb-0" th:text="${event.area != null ? event.area : '&nbsp;' }"></p>
 
                     </div>

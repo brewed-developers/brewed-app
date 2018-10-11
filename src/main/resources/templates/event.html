@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
@@ -13,14 +13,17 @@
     <link href="/css/slick.min.css" rel="stylesheet">
     <link href="/css/slick-theme.min.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
-    <!-- <link href="css/normalize.css" rel="stylesheet"> -->
+    <style>
+        .quantityBtn{
+            display:none;
+        }
+    </style>
 </head>
 <body>
 <header th:include="header :: header" style="position: sticky; top: 0; z-index: 10;"></header>
 
 <div th:include="header :: loginpopup"></div>
 <main>
-    <div th:text="${event}"></div>
     <section class="container  mt-3">
         <div class="row">
             <!--<h1 class="h2" th:text="${event.name}"></h1>-->
@@ -28,7 +31,7 @@
         <div class="row">
 
             <div class="col-md-8">
-                <img src="/img/1.jpg" style="width: 100%;height:100%" alt="" />
+                <img src="/img/1.jpg" style="width: 100%;height:100%" alt=""/>
 
             </div>
             <div class="col-md-4">
@@ -51,7 +54,7 @@
                         </p>
                     </div>
                     <div class="card-footer text-muted white-text">
-                       <!-- <p class="mb-0">2 days ago </p>-->
+                        <!-- <p class="mb-0">2 days ago </p>-->
                         <div class="lighten-2 pl-3 pr-3 text-muted">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
@@ -116,43 +119,28 @@
                                     </td>
                                     <td>White</td>
                                     <td></td>
-                                    <td>$800</td>
+                                    <td th:text="${ticket.originalPrice}"></td>
                                     <td class="text-center">
-                                        <div class="btn-group radio-group ml-2" data-toggle="buttons">
+                                        <div class="btn-group radio-group ml-2 addToCartBtn"
+                                             th:id="'addToCartBtn' + ${ticket.id}" data-toggle="buttons"
+                                             th:onclick="'addToCart(\''+${ticket.id}+'\', \''+${ticket.ticketName}+'\',  \''+${ticket.ticketType}+'\',  \''+${ticket.originalPrice}+'\', \'event\');'">
                                             <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
-                                                <input type="radio" name="options" id="option2">Buy Ticket
+                                                <input type="radio" name="options" id="option2">Add To Cart
                                             </label>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h5 class="mt-3">
-                                            <strong>iPhone</strong>
-                                        </h5>
-                                        <p class="text-muted">Apple</p>
-                                    </td>
-                                    <td>White</td>
-                                    <td></td>
-                                    <td>$800</td>
-                                    <td class="text-center">
-                                        <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
-                                                <input type="radio" name="options" id="option1">—
+                                        <div class="btn-group radio-group ml-2 quantityBtn"
+                                             th:id="'quantityBtn' + ${ticket.id}" data-toggle="buttons">
+                                            <label class="btn btn-sm btn-primary btn-rounded waves-light" th:onclick="'onRemoveQuantity(\''+${ticket.id}+'\');'">
+                                                <input type="radio" name="options" id="removeItem"
+                                                       >--
                                             </label>
-                                            <label class="btn btn-sm btn-primary waves-effect waves-light">
-                                                <input type="radio" name="options" id="option1">123
+                                            <label class="btn btn-sm btn-primary waves-light">
+                                                <input type="radio" name="options"><span th:id="'quantityId' + ${ticket.id}">1</span>
                                             </label>
-                                            <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
-                                                <input type="radio" name="options" id="option2">+
+                                            <label class="btn btn-sm btn-primary btn-rounded waves-light" th:onclick="'onAddQuantity(\''+${ticket.id}+'\');'">
+                                                <input type="radio" name="options" id="addItem">+
                                             </label>
                                         </div>
-
-                                        <!--  <div class="btn-group radio-group ml-2" data-toggle="buttons">
-                                                <label class="btn btn-sm btn-primary btn-rounded waves-effect waves-light">
-                                                    <input type="radio" name="options" id="option2">Buy Ticket
-                                                </label>
-                                            </div> -->
                                     </td>
                                 </tr>
                                 </tbody>
@@ -176,64 +164,26 @@
                         </div>
                     </div>
                     <div class="">
-                        <ul class="list-group mb-3 z-depth-1">
+                        <ul class="list-group mb-2 z-depth-1 bb-cart" id="bb-cart">
                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">Product name</h6>
-                                    <small class="text-muted">Brief description</small>
+                                    <img src="/img/empty_cart.jpg" width="100%" alt="empty cart"/>
                                 </div>
-                                <span class="text-muted">$12</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Second product</h6>
-                                    <small class="text-muted">Brief description</small>
-                                </div>
-                                <span class="text-muted">$8</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Third item</h6>
-                                    <small class="text-muted">Brief description</small>
-                                </div>
-                                <span class="text-muted">$5</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                <div class="text-success">
-                                    <h6 class="my-0">Promo code</h6>
-                                    <small>EXAMPLECODE</small>
-                                </div>
-                                <span class="text-success">-$5</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Total (USD)</span>
-                                <strong>$20</strong>
+
                             </li>
                         </ul>
-
-                        <form class="card p-2">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Promo code">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-secondary waves-effect waves-light">Redeem</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                     <div class="card-footer text-muted black white-text">
-                        <p class="mb-0">Check Out</p>
+                        <p class="mb-0" onclick="checkOut()">Check Out</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container mt-3">
+    <section class="container mt-3 mb-5">
         <div class="row">
-            <div class="border-right col-md-8">
-                <div class="row">
-
-                </div>
+            <div class="col-md-8">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="h4 text-muted ">Brewed | Recommended</h2>
@@ -483,104 +433,12 @@
 
 
     </section>
-    <section class="container mt-3">
-    </section>
 
-    <section>
-        <div class="modal fade" id="login-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content form-elegant">
-                    <!--Header-->
-                    <div class="modal-header text-center">
-                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel">
-                            <strong>Sign in</strong>
-                        </h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <!--Body-->
-                    <div class="modal-body mx-4">
-                        <!--Body-->
-                        <div class="md-form">
-                            <input type="email" id="Form-email1" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="Form-email1">Your email</label>
-                        </div>
 
-                        <div class="md-form">
-                            <input type="password" id="Form-pass1" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="Form-pass1">Your password</label>
-                            <p class="font-small blue-text d-flex justify-content-end">Forgot
-                                <a href="#" class="blue-text ml-1"> Password?</a>
-                            </p>
-                        </div>
-
-                        <div class="text-center">
-                            <button type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Sign
-                                in</button>
-                        </div>
-                        <p class="font-small dark-grey-text text-right d-flex justify-content-center pt-2"> or Sign
-                            in with:</p>
-
-                        <div class="row d-flex justify-content-center">
-                            <!--Facebook-->
-                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a">
-                                <i class="fab fa-facebook"></i>
-                            </button>
-                            <!--Twitter-->
-                            <!--Google +-->
-                            <button type="button" class="btn btn-white btn-rounded z-depth-1a">
-                                <i class="fab fa-google-plus"></i>
-                            </button>
-                            <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a">
-                                <i class="fas fa-mobile-alt"></i>
-                            </button>
-
-                        </div>
-                    </div>
-                    <!--Footer-->
-                    <div class="modal-footer">
-                        <p class="font-small grey-text d-flex justify-content-end">Not a member?
-                            <a href="#" class="blue-text ml-1"> Sign Up</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade top" id="search-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true" data-backdrop="true">
-            <div class="modal-dialog m-0  modal-frame modal-top modal-notify modal-info" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="md-form w-100">
-                                    <input type="search" id="form-autocomplete" class="form-control mdb-autocomplete">
-                                    <button class="mdb-autocomplete-clear">
-                                        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
-                                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                            <path d="M0 0h24v24H0z" fill="none" />
-                                        </svg>
-                                    </button>
-                                    <label for="form-autocomplete" class="active">What is your favorite US state?</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="container mt-3">
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-7" style="background-image: url('/img/1.jpg')"></div>
-        </div>
-    </section>
 </main>
 <footer id="footer" th:include="footer :: footer"
         class="page-footer center-on-small-only unique-color-dark pt-0"></footer>
+
 
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -590,6 +448,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="/js/mdbfull.js"></script>
 <script type="text/javascript" src="/js/slick.min.js"></script>
+<script type="text/javascript" src="/js/cart.js"></script>
 <script>
 </body>
 </html>
