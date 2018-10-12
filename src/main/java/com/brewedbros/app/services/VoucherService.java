@@ -118,11 +118,13 @@ public class VoucherService {
      * @param eventName : Name of Event
      * @return: Single Event Vouchers (Voucher of Type Event)
      */
-    public Voucher getSingleEvents(String city, String eventName) {
-        Voucher voucher = voucherRepository.findByCityAndNameAndVoucherType(city, eventName, VoucherConstants.EVENTS);
+    public Voucher getSingleEvents(String city, String eventName,String type) {
+        Voucher voucher = voucherRepository.findByCityAndNameAndVoucherType(city, eventName, type);
         voucher.setTickets(ticketRepository.findByVoucherId(voucher.getId()));
         return voucher;
     }
+
+
 
     private List<Voucher> getVouchersByCityAndVoucherType(String city, String type) {
         return voucherRepository.findByCityAndVoucherType(city, type);
