@@ -20,21 +20,20 @@ import javax.servlet.http.HttpServletRequest;
 
 @RequestMapping("/{city}")
 @Controller
-public class EventController {
+public class SpaController {
     @Autowired
     private VoucherService voucherService;
     @Autowired
     private BannerService bannerService;
-    private static Logger logger = LoggerFactory.getLogger(EventController.class);
+    private static Logger logger = LoggerFactory.getLogger(SpaController.class);
 
-    @GetMapping(value = {"/events"})
+    @GetMapping(value = {"/spa"})
     public String getEvents(Model model, @PathVariable("city") String city,
                             @RequestParam(value = "area", required = false) String area,
                             @RequestParam(value = "price", required = false) String price,
                             @RequestParam(value = "time", required = false) String time,
                             @RequestParam(value = "sort", required = false) String sort, HttpServletRequest request) throws Exception {
-
-        model.addAttribute("eventList", voucherService.getVoucherByTypeAndCity(VoucherConstants.EVENTS, city));
+        model.addAttribute("eventList", voucherService.getVoucherByTypeAndCity(VoucherConstants.SPA, city));
 
         model.addAttribute("bannerList", bannerService.getHomepageBanners(city));
         /*model.addAttribute("eventList", voucherService.getEvents(city));*/
@@ -44,10 +43,17 @@ public class EventController {
     }
 
 
-    @GetMapping(value = {"/events/{voucherName}"})
+    @GetMapping(value = {"/spa/{voucherName}"})
     public String getSingleEvents(Model model, @PathVariable("city") String city, @PathVariable("voucherName") String voucherName, HttpServletRequest request) throws Exception {
+        UriComponentsBuilder builder = ServletUriComponentsBuilder.fromCurrentRequest();
 
-        model.addAttribute("event", voucherService.getSingleEvents(city, voucherName,VoucherConstants.EVENTS));
+        String path = builder.buildAndExpand().getPath();
+
+        String type = path.substring(path.lastIndexOf("/") + 1);
+        logger.info(path);
+        logger.info(type);
+
+        model.addAttribute("event", voucherService.getSingleEvents(city, voucherName,VoucherConstants.SPA));
         return "event";
     }
 }
