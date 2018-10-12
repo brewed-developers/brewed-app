@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welocome to Admin</title>
+    <link rel="stylesheet" href="/css/fontawesome_all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdbfull.css" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+    input[type="file"] {
+        border: 1px solid #128ff2;
+        padding: 6px;
+        max-width: 100%;
+    }
+
+
+    </style>
+</head>
+
+
+<!---->
+<body>
+<header class="container-fluid" th:include="/admin/common/header :: header"
+        style="position: sticky; top: 0; z-index: 10;"></header>
+
+<main>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-2">
+                <nav th:include="/admin/common/left_navigation :: left_navigation"></nav>
+            </div>
+
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form id="bannerUploadForm" name="bannerUploadForm"  th:object="${banner}">
+                            <input id="singleFileUploadInput"  onchange="readUrl(event)"  type="file" style="width:100%;" name="file" required/>
+
+
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> UPLOAD</button>
+                            <div  class="mystyle col-4">
+                                <img th:src="*{imgUrl}" id="blah" style="margin-left:200px" alt="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="#" th:action="@{/admin/banner}" th:object="${banner}" method="post"
+                              class="text-center border border-light p-5">
+
+                            <div class="row">
+                                <div class="mystyle col-12">
+                                    <b>Banner Details</b>
+                                </div>
+
+                                <div hidden class="mystyle col-12">
+                                    <input type="text" id="id" th:field="*{id}" class="form-control" placeholder="id">
+                                </div>
+                                <div class="mystyle col-12">
+                                   <!-- <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City"
+                                           required>-->
+                                    <select>
+                                        <option value="a">a</option>
+                                        <option value="a">a</option>
+                                        <option value="a">a</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mystyle col-12">
+                                    <input type="text" id="area" th:field="*{area}" class="form-control" placeholder="Area"
+                                           required>
+                                </div>
+                                <div class="mystyle col-12">
+                                    <input type="text" id="description" th:field="*{description}" class="form-control"
+                                           placeholder="Description" required>
+                                </div>
+                                <div class="mystyle col-12">
+                                    <input type="text" id="title" th:field="*{title}"
+                                           class="form-control"
+                                           placeholder="Title" required>
+                                </div>
+
+                                <div class="mystyle col-12">
+                                    <input type="text" id="bannerType" th:field="*{bannertype}" class="form-control"
+                                           placeholder="Banner Type" required>
+                                </div>
+                                <div class="mystyle col-12">
+                                    <input type="number"  min="1" max="9999999999" id="priority" th:field="*{priority}" class="form-control"
+                                           placeholder="Priority" required>
+                                </div>
+
+
+
+
+
+                                <div class="mystyle col-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Add Banner
+                                    </button>
+                                </div>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="footer-copyright py-1 text-center">
+        © 2018 Copyright: <a href="/"> <strong> brewdbros.com</strong>
+    </a>
+    </div>
+</footer>
+
+
+</body>
+
+<style>
+ .mystyle{ margin-top:30px }
+
+
+
+
+
+
+</style>
+
+
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
+
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdbfull.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+<script type="text/javascript" src="/js/file_upload.js"></script>
+
+
+</html>
+
+

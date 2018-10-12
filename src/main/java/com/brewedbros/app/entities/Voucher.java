@@ -28,7 +28,7 @@ public class Voucher {
     private Long noOfShares;
     private int ticketCount;
     private String imgURL;
-
+    private String showImage;
     @Column(name = "show_home_page", nullable = false, columnDefinition = "bool default false")
     private boolean showHomePage;
     @Transient

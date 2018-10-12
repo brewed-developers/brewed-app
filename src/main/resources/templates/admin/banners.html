@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Welocome to Admin</title>
+    <link rel="stylesheet" href="/css/fontawesome_all.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/mdbfull.css" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header th:include="/admin/common/header :: header"
+        style="position: sticky; top: 0; z-index: 10;"></header>
+<main>
+    <div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <nav th:include="/admin/common/left_navigation :: left_navigation"></nav>
+            </div>
+            <div style="width:200px" class="col-md-10">
+                <a th:href="@{/admin/banner}" class="btn btn-teal btn-rounded btn-sm m-0 waves-effect waves-light mb-3"><i
+                        class="fa fa-plus mr-1"></i> Add Banner</a>
+                <table class="table table-striped table-bordered table-sm text-center ">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">City</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Banner Type</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="banner : ${bannerList}">
+                        <td><a th:text="${banner.city}" th:href="@{'/admin/banner/'+${banner.id}}"></a></td>
+                        <td th:text="${banner.area}"></td>
+                        <td th:text="${banner.title}"></td>
+                        <td th:text="${banner.bannertype}"></td>
+
+                      <!--  <td>
+                            <button th:onclick="'javascript:deleteVoucher(' + ${banner.id} + ');'"
+                                    class="btn btn-teal btn-rounded btn-sm m-0 waves-effect waves-light"><i
+                                    class="fas fa-trash-alt mr-1"></i> Delete Voucher
+                            </button>
+                        </td>-->
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-copyright py-1 text-center">
+        © 2018 Copyright: <a href="/"> <strong> brewdbros.com</strong>
+    </a>
+    </div>
+</footer>
+
+
+<script>
+function deleteVoucher(id)
+{
+  $.ajax({
+        type: "DELETE",
+        url: '/admin/voucher/'+id,
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+           // alert("Data has been deleted.");
+            location.reload();
+        },
+        error: function () {
+            location.reload();
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="/js/mdbfull.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+</body>
+</html>

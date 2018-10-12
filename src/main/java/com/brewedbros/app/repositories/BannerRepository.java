@@ -9,5 +9,6 @@ import java.util.List;
 public interface BannerRepository extends CrudRepository<Banner, String> {
 
 	List<Banner> findByCity(String city);
+	Banner findOneById(String id);
 
 }

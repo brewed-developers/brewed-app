@@ -5,9 +5,9 @@ import com.brewedbros.app.repositories.BannerRepository;
 import com.brewedbros.app.repositories.VoucherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.brewedbros.app.entities.Voucher;
+
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class BannerService {
@@ -20,20 +20,33 @@ public class BannerService {
         return bannerRepository.findByCity(city);
     }
 
-    public Banner saveBannerImage(Banner banner)
-    {
+    public Banner saveBanner(Banner banner) {
 
-       Voucher voucher=voucherRepository.findOneById(banner.getVoucherId());
-        banner.setCity(voucher.getCity());
-        banner.setImgUrl(banner.getImgUrl());
-        banner.setTitle(voucher.getTitle());
-        banner.setDescription(voucher.getLongDescription());
-        banner.setId("1");
-        banner.setVoucherId(banner.getVoucherId());
-        voucher.setImgURL(banner.getImgUrl());
-        voucherRepository.save(voucher);
-        bannerRepository.save(banner);
+        if (banner.getId() != null && banner.getId() != "") {
+            return bannerRepository.save(banner);
 
-        return null;
+        } else {
+            banner.setId(UUID.randomUUID().toString());
+            return bannerRepository.save(banner);
+
+        }
     }
+
+    public Iterable<Banner> getAllBanner(){return bannerRepository.findAll();}
+
+    public Banner getBanner(String id) { return bannerRepository.findById(id).get(); }
+
+    public Banner uploadBanner(Banner banner)
+    {
+       Banner bannerDB= bannerRepository.findOneById(banner.getId());
+       bannerDB.setImgUrl(banner.getImgUrl());
+
+        return bannerRepository.save(bannerDB);
+    }
+
+
+
+
+
+
 }

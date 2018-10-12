@@ -2,21 +2,22 @@ package com.brewedbros.app.entities;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
 public class Banner {
 	@Id
+
 	private String id;
 	private String title;
 	private String city;
+	private String area;
 	private String description;
 	private String url;
 	private String imgUrl;
-	private String showBanner;
+	private String bannertype;
+	private String priority;
 	@Column(name="voucher_id")
 	private String voucherId;
 

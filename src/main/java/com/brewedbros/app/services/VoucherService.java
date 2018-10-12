@@ -1,6 +1,7 @@
 package com.brewedbros.app.services;
 
 import com.brewedbros.app.constants.VoucherConstants;
+import com.brewedbros.app.entities.Banner;
 import com.brewedbros.app.entities.Ticket;
 import com.brewedbros.app.entities.Voucher;
 import com.brewedbros.app.repositories.TicketRepository;
@@ -130,5 +131,15 @@ public class VoucherService {
 
     private List<Voucher> getVochersByCityAreaAndVoucherType(String city, String area, String type) {
         return voucherRepository.findByCityAndAreaAndVoucherType(city, area, type);
+    }
+    public Voucher saveVoucherImage(Voucher voucher)
+    {
+
+        Voucher voucherDB=voucherRepository.findOneById(voucher.getId());
+            voucherDB.setImgURL(voucher.getImgURL());
+            voucherRepository.save(voucherDB);
+
+
+        return null;
     }
 }

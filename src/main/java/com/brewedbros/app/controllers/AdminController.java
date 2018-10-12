@@ -36,11 +36,13 @@ public class AdminController {
     @Autowired
     BannerService bannerService;
     Banner banner=new Banner();
+    Voucher voucher=new Voucher();
     @GetMapping("/vouchers")
     public String home(Model model) throws Exception {
         model.addAttribute("voucherList", voucherService.getAllVouchers());
         return "admin/vouchers";
     }
+
 
     @GetMapping("/voucher")
     public String add(Model model) throws Exception {
@@ -91,17 +93,53 @@ public class AdminController {
 
         return new ResponseEntity<Object>(ticketService.deleteVoucher(id), HttpStatus.OK);
     }
+    @GetMapping("/banner")
+    public String Uploadbanner(Model model) throws Exception {
+        model.addAttribute("banner", new Banner());
+        return "admin/addBanner";
+    }
+    @PostMapping("/uploadVoucherImage")
+    ResponseEntity<Object> uploadVoucherImage(@RequestParam("id") String id,@RequestPart(value = "file") MultipartFile file) {
+
+        voucher.setId(id);
+
+        voucher.setImgURL(this.awss3Service.uploadFile(file));
+
+        voucherService.saveVoucherImage(voucher);
+
+        return new ResponseEntity<Object>("File Uploaded Successfully", HttpStatus.OK);
+    }
+    @PostMapping("/banner")
+    public String bannerDetails(Model model, @ModelAttribute Banner banner) throws Exception {
+       // banner.setId("1");
+        bannerService.saveBanner(banner);
+        model.addAttribute("bannerList", bannerService.getAllBanner());
+        return "admin/banners";
+    }
+    @GetMapping("/banners")
+    public String addBanner(Model model) throws Exception {
+        model.addAttribute("bannerList", bannerService.getAllBanner());
+        return "admin/banners";
+    }
+    @GetMapping("/banner/{id}")
+    public String getBanner(Model model, @PathVariable("id") String id) throws Exception {
+        model.addAttribute("banner", bannerService.getBanner(id));
+
+        return "admin/addBanner";
+    }
 
     @PostMapping("/uploadBanner")
     ResponseEntity<Object> uploadBanner(@RequestParam("id") String id,@RequestPart(value = "file") MultipartFile file) {
 
-        banner.setVoucherId(id.split("~")[0]);
-        banner.setShowBanner(id.split("~")[1]);
+        banner.setId(id);
+
         banner.setImgUrl(this.awss3Service.uploadFile(file));
-        bannerService.saveBannerImage(banner);
+
+       // voucherService.saveVoucherImage(voucher);
+        bannerService.uploadBanner(banner);
+
         return new ResponseEntity<Object>("File Uploaded Successfully", HttpStatus.OK);
     }
-
 
 }
 
