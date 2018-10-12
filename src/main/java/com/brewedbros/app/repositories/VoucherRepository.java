@@ -31,4 +31,6 @@ public interface VoucherRepository extends CrudRepository<Voucher, String> {
     List<Voucher> findByCityAndAreaAndVoucherType(String city, String area, String type);
 
     Voucher findByCityAndNameAndVoucherType(String city, String eventName, String voucherType);
+
+    Voucher findOneById(String id);
 }

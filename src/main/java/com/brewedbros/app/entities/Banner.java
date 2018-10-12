@@ -1,9 +1,13 @@
 package com.brewedbros.app.entities;
 
+import lombok.Data;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Data
 public class Banner {
 	@Id
 	private String id;
@@ -12,6 +16,9 @@ public class Banner {
 	private String description;
 	private String url;
 	private String imgUrl;
+	private String showBanner;
+	@Column(name="voucher_id")
+	private String voucherId;
 
 	public Banner(String title, String url, String imgUrl) {
 		super();
@@ -20,7 +27,7 @@ public class Banner {
 		this.imgUrl = imgUrl;
 	}
 
-	Banner() {
+	public Banner() {
 	}
 
 	public String getId() {

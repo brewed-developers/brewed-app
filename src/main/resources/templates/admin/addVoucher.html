@@ -40,9 +40,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <form id="singleUploadForm" name="singleUploadForm" th:object="${voucher}" >
-                            <input id="singleFileUploadInput" type="file" style="width:100%;" name="file" required/>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <input id="singleFileUploadInput"  onchange="readUrl(event)"  type="file" style="width:100%;" name="file" required/>
+                            <input id="showBanner"   name="showBanner" required/>
 
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> UPLOAD</button>
+                            <div  class="mystyle col-4">
+                                <img th:src="*{imgURL}" id="blah" style="width:200px" alt="Upload Image">
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-6">
@@ -55,6 +59,7 @@
                                     <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Name"
                                            required>
                                 </div>
+
                                 <div class="mystyle col-12">
                                     <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Title"
                                            required>
@@ -243,6 +248,21 @@
 </style>
 
 <script>
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
+
     function setdata()
     {
         document.getElementById("tktvoucherID").value=document.getElementById("voucherId").value;

@@ -1,9 +1,12 @@
 package com.brewedbros.app.controllers;
 
 
+import com.brewedbros.app.entities.Banner;
 import com.brewedbros.app.entities.Ticket;
 import com.brewedbros.app.entities.Voucher;
 import com.brewedbros.app.repositories.TicketRepository;
+import com.brewedbros.app.services.AWSS3Service;
+import com.brewedbros.app.services.BannerService;
 import com.brewedbros.app.services.TicketService;
 import com.brewedbros.app.services.VoucherService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,7 +31,11 @@ public class AdminController {
     TicketService ticketService;
     @Autowired
     TicketRepository ticketRepository;
-
+    @Autowired
+    private AWSS3Service awss3Service;
+    @Autowired
+    BannerService bannerService;
+    Banner banner=new Banner();
     @GetMapping("/vouchers")
     public String home(Model model) throws Exception {
         model.addAttribute("voucherList", voucherService.getAllVouchers());
@@ -83,6 +91,17 @@ public class AdminController {
 
         return new ResponseEntity<Object>(ticketService.deleteVoucher(id), HttpStatus.OK);
     }
+
+    @PostMapping("/uploadBanner")
+    ResponseEntity<Object> uploadBanner(@RequestParam("id") String id,@RequestPart(value = "file") MultipartFile file) {
+
+        banner.setVoucherId(id.split("~")[0]);
+        banner.setShowBanner(id.split("~")[1]);
+        banner.setImgUrl(this.awss3Service.uploadFile(file));
+        bannerService.saveBannerImage(banner);
+        return new ResponseEntity<Object>("File Uploaded Successfully", HttpStatus.OK);
+    }
+
 
 }
 
