@@ -39,13 +39,13 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-6">
-                        <form id="bannerUploadForm" name="bannerUploadForm"  th:object="${banner}">
+                        <form style="margin-left: 10%;" id="bannerUploadForm" name="bannerUploadForm"  th:object="${banner}">
                             <input id="singleFileUploadInput"  onchange="readUrl(event)"  type="file" style="width:100%;" name="file" required/>
 
 
                             <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> UPLOAD</button>
                             <div  class="mystyle col-4">
-                                <img th:src="*{imgUrl}" id="blah" style="margin-left:200px" alt="">
+                                <img th:src="*{imgUrl}" id="blah" style="width:200px"    alt="">
                             </div>
                         </form>
                     </div>
@@ -62,14 +62,9 @@
                                     <input type="text" id="id" th:field="*{id}" class="form-control" placeholder="id">
                                 </div>
                                 <div class="mystyle col-12">
-                                   <!-- <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City"
-                                           required>-->
-                                    <select>
-                                        <option value="a">a</option>
-                                        <option value="a">a</option>
-                                        <option value="a">a</option>
+                                    <input type="text" id="city" th:field="*{city}" class="form-control" placeholder="City"
+                                           required>
 
-                                    </select>
                                 </div>
 
                                 <div class="mystyle col-12">
