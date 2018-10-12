@@ -45,7 +45,7 @@ public class BannerService {
     }
 
 
-
+   public boolean  deleteBanner(String id){  if(id!=null && id!="") bannerRepository.deleteById(id); return true ;}
 
 
 

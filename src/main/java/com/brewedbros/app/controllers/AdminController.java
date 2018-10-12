@@ -140,6 +140,12 @@ public class AdminController {
 
         return new ResponseEntity<Object>("File Uploaded Successfully", HttpStatus.OK);
     }
+    @DeleteMapping("/banner/{id}")
+    ResponseEntity<Object> deleteBanner(@PathVariable("id") String id	 )
+    {
+
+        return new ResponseEntity<Object>(bannerService.deleteBanner(id), HttpStatus.OK);
+    }
 
 }
 
